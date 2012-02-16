@@ -1,0 +1,12 @@
+{
+  "/":          "index",
+  "/radio":     "radio",
+  "/eventi":     "eventi",
+  "/palinsesto":     "palinsesto",
+  "/mondo_shout":     "mondo_shout",
+  "/chi_siamo":     "chi_siamo",
+
+  "/interviste":     "interviste",
+  "/recensioni":     "recensioni",
+  "/arci":     "arci"
+}

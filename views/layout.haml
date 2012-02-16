@@ -1,0 +1,28 @@
+-# contents in #head and #body will be appended to head and body tags in index.html, same thing for #title
+%div
+  #head
+    #title FiveTastic
+    %link{ type: "text/sass", href: "/sass/reset.sass" }
+    %link{ type: "text/sass", href: "/sass/app.sass" }
+  #body
+    #container
+      %header
+        %h1 
+          %a{ href: "/" } 
+            / RadioShout
+            %img{ src: "/images/radioshout_logo.png"}
+          
+      %nav
+        %a{ href: "/" } Home
+        %a{ href: "/radio" } Radio
+        %a{ href: "/eventi" } Eventi
+        %a{ href: "/palinsesto" } Palinsesto
+        %a{ href: "/mondo_shout" } Mondo Shout
+        %a{ href: "/chi_siamo" } Chi Siamo
+      .clear
+          
+      #content
+        != yield
+  
+      %footer
+      
