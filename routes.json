@@ -1,6 +1,6 @@
 {
   "/":          "index",
-  "/radio":     "radio",
+  "/la_radio":     "la_radio",
   "/eventi":     "eventi",
   "/palinsesto":     "palinsesto",
   "/mondo_shout":     "mondo_shout",

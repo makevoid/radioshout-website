@@ -21,28 +21,61 @@ button
   
 body
   color: #111
-  background: url('/images/background.jpg')
-  
-#container
-  background: rgba(255, 255, 255, 0.5)
-  padding: 10px 10px 30px 10px
-  margin: 30px 20px
-  border-radius: 25px
-  
-  
-header, #content
+  background: #777
+  //background: url('/images/background.jpg') no-repeat #444
+  //background-size: cover
 
+a
+  color: #222
+a:hover
+  color: #eee
+  text-shadow: 1px 1px 5px #222
+
+#bg
+  position: absolute
+  z-index: 1
+
+#inner_container
+  position: absolute
+  z-index: 2
+  width: 100%
+
+#bg
+  margin: 100px 0 0 0
+  img
+    width: 100%
+  
+#header, #content_outer
+  padding: 10px 10px 10px 10px
+  border-radius: 25px
+  margin: 0 0 0px 0
+  
+#inner_inner_container
+  margin: 15px 5% 40px
+
+#content_outer
+  background: rgba(255, 255, 255, 0.5)
+  
+#header img
+  opacity: 0.8
+  width: 40%
+  //margin: 10px 0 10px 2%
+  
 nav
   margin: 8px 0 30px
   padding: 10px 0
-  background: #000
   a
     margin: 0 10px 0 0
-    color: !text_color2
+    color: #000
     padding: 4px 10px
     +rounded
+    border: 1px solid transparent
   a:hover  
-    color: #EEE
+    color: #FFF
+    background: #999
+    opacity: 0.85
+    border: 1px solid #555
+    box-shadow: 1px 1px 5px #222
     
 ul
   margin: 10px 0 20px
@@ -68,15 +101,8 @@ ul span
   font-size: 0.9em
   font-weight: normal
 
-.themes
-  float: right
-  text-align: center
-  background: #DDD
-  padding: 8px
-  margin: 35px 0 0 0
-  +rounded
-  .red 
-    background: #F00
-  .blue
-    background: #00F
+.article.radio
+  img
+    float: left
+    width: 40%
   
