@@ -20,12 +20,21 @@ $("body").on "sass_loadeds", ->
   # resize issuu
   setTimeout ->
     resize_issuu()
-  , 200
+    box_images()
+  , 600
   
   if $(".issuu").length > 0
     $(window).on "resize", ->
       resize_issuu()
-  
+      
+box_images = ->
+  for article in $(".article")
+    article = $(article)
+    image = article.find("img")
+    article.find("img").remove()
+    article.append(image)
+    article.find("img").wrap("<div class='img_box'></div>")
+      
 resize_issuu = ->
   if $(".issuu").length > 0
     top_margin = 20
@@ -245,7 +254,7 @@ haml.format_date = (date) ->
   "#{date.getDate()}/#{date.getMonth()+1}/#{date.getFullYear()}"
   
 haml.article_preview = (text) ->
-  max_length = 550
+  max_length = 200
   if text.length > max_length
     txt = text.split(/\[image_\d+\]/)[1]
     text = txt if txt

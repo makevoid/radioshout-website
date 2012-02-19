@@ -104,8 +104,22 @@ ul span
   font-size: 0.9em
   font-weight: normal
 
-.article.radio
+.article.radio  
+  float: left
+  width: 24%
+  height: 300px
+  margin: 0 0 20px 0
+  overflow: hidden
+  position: relative
   img
-    float: left
-    width: 40%
+    width: 100%
+    position: absolute
+    z-index: 1
+  .title
+    position: absolute
+    z-index: 3
+  .text
+    position: absolute
+    z-index: 2
+    top: 100px
   
