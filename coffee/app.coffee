@@ -60,6 +60,7 @@ cur_idx = 0
 titles = []
 
 gal_build = ->
+  return unless @collection #&& @collection[0]["collection"] == "articoli"
   images = for article in @collection 
     img = article.images[0]
     img.title = article.title if img
