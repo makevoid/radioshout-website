@@ -13,7 +13,6 @@
   -moz-border-radius: 10px
 
 body
-  background: #eaeaea
   font-family: Georgia, Helvetica, Arial, Verdana
 
 * 
@@ -26,7 +25,7 @@ button
   
 body
   color: #111
-  background: #777
+  background: #666
   //background: url('/images/background.jpg') no-repeat #444
   //background-size: cover
 
@@ -39,6 +38,7 @@ a:hover
 #bg
   position: absolute
   z-index: 1
+  width: 100%
 
 #inner_container
   position: absolute
@@ -62,15 +62,18 @@ a:hover
   background: rgba(220, 220, 220, 0.92)
   box-shadow: 3px 2px 15px #FFF
   border: 1px solid #ddd
-  
+
+#content
+  margin: 0 0 0 10px
+
 #header img
-  opacity: 0.8
+  opacity: 0.95
   width: 40%
   //margin: 10px 0 10px 2%
   
 nav
   margin: 8px 0 30px
-  padding: 10px 0
+  padding: 10px 0 0
   a
     margin: 0 10px 0 0
     color: #000
@@ -127,4 +130,21 @@ ul span
     position: absolute
     z-index: 2
     top: 100px
+    
+#stream
+  background: rgba(220, 220, 220, 0.92)
+  box-shadow: 0px 0px 8px #FFF
+  border-radius: 10px
+  float: right
+  width: 20%
+  padding: 10px
+  .status
+    
   
+#img_gal
+  width:  98%
+  margin-bottom: 50px
+  height: 300px
+  overflow: hidden
+  img
+    width:  100%
