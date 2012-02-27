@@ -2,6 +2,7 @@
 %div
   #head
     #title RadioShout
+    %meta{ name: "viewport", content: "width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;" }
     %link{ type: "text/sass", href: "/sass/reset.sass" }
     %link{ type: "text/sass", href: "/sass/app.sass" }
   #body
@@ -12,20 +13,23 @@
         #inner_inner_container
           #header
             %header
+              #stream
+                Streaming da mixtream 
+                .status
               #fiveapi_message  
               #fiveapi
               %h1 
                 %a{ href: "/" } 
                   / RadioShout
                   %img{ src: "/images/radioshout_logo.png"}
+                  
           #content_outer    
             %nav
-              %a{ href: "/" } 			Home
               %a{ href: "/la_radio" } 		Radio
-              %a{ href: "/eventi" } 		Eventi
+              %a{ href: "/eventi" } 		  Eventi
               %a{ href: "/palinsesto" } 	Palinsesto
-              %a{ href: "/mondo_shout" } 	Mondo Shout
-              %a{ href: "/chi_siamo" } 	Chi Siamo
+              %a{ href: "/shout_world" } 	Mondo Shout
+              %a{ href: "/chi_siamo" } 	  Chi Siamo
             .clear
           
             #content

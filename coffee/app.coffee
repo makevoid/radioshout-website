@@ -3,9 +3,11 @@ $("body").on "sass_loadeds", ->
   # g.fivetastic.dev_mode() # comment this in production
   $("body").off "page_loaded"
   gal_resize()
+  $.get "http://shoutcast.mixstream.net/js/status/usa7-vn:8012", (data) ->
+    console.log data
+    $("#stream .status").html data
   
   # megafix
-  
   $("body").on "page_js_loaded", ->
     gal_build()
     $("#content").css({ opacity: 0 })
@@ -20,8 +22,7 @@ $("body").on "sass_loadeds", ->
   # resize issuu
   setTimeout ->
     resize_issuu()
-    box_images()
-  , 600
+  , 200
   
   if $(".issuu").length > 0
     $(window).on "resize", ->
@@ -29,10 +30,11 @@ $("body").on "sass_loadeds", ->
       
 box_images = ->
   for article in $(".article")
+    # TODO: when $(".article").loaded or markdown loaded, box image
     article = $(article)
-    image = article.find("img")
-    article.find("img").remove()
-    article.append(image)
+    # image = article.find("img")
+    # article.find("img").remove()
+    # article.append(image)
     article.find("img").wrap("<div class='img_box'></div>")
       
 resize_issuu = ->
@@ -57,14 +59,18 @@ restore_gal = ->
 
 cur_idx = 0
 
+
 titles = []
 
 gal_build = ->
-  images = for article in @collection 
+  return unless @collection[0]["collection"] == "articoli"
+  images = for article in @collection
     img = article.images[0]
     img.title = article.title if img
     img
   images = _(images).compact()  
+  $("#img_gal img").remove() 
+  titles = []
   for image in images  
     titles.push image.title
     $("#img_gal").append("<img src='#{hostz}#{image.url}'>")
@@ -133,10 +139,12 @@ if location.hostname == "localhost"
 else
   # prod
   hostz = "fiveapi.com"
-  local = "radioshout.riotvan.net"
+  local = "radioshout.mkvd.net"
 
 hostz = "http://#{hostz}"
 local = "http://#{local}"
+
+articles_per_page = 5
 
 # fiveapi requires jquery/zepto
 
@@ -171,9 +179,16 @@ $("body").on "page_loaded", ->
     #     $(".articles a").first().trigger "click"
     #   , 200
       
-    $("body").on "got_collection", ->
+      
+    $("body").on "got_collection2", ->
       gal_anim()
-      $("body").off "got_collection"
+      $("body").off "got_collection2"
+      
+    $("body").on "got_collection", ->
+      setTimeout -> 
+        box_images()
+        gal_build()
+      , 200
 
     setTimeout ->
       get_elements()
@@ -205,7 +220,29 @@ singularize = (word) ->
 
 get_elements = ->
   get_article()  
-  get_collection()  
+  per_page = if location.pathname == "/chi_siamo" ||  location.pathname ==  "/collabs"
+    50
+  else
+    articles_per_page
+    
+  filters = { limit: per_page, offset: 0 }
+  get_collection(filters)  
+
+render_pagination = (pag) ->  
+  total_pages = pag["entries_count"] / pag["limit"]
+  current_page = pag["offset"]*pag["limit"]
+  pages_view =  for i in [1..total_pages]
+    "<a>#{i}</a>"
+  pagination = "
+
+    #{pages_view.join(" ")}
+
+  "
+  $(".pagination[data-collection=#{pag["collection"]}]").html(pagination)
+  $(".pagination[data-collection=#{pag["collection"]}] a").on "click", ->
+    page = $(this).html()-1
+    limit = articles_per_page
+    get_collection { limit: limit, offset: limit*page }
 
 get_article = ->
   article_id = fiveapi.article_from_page()
@@ -213,11 +250,14 @@ get_article = ->
     fiveapi.get_article article_id, (article) ->
       got_article article_id, article
 
-get_collection = ->
+get_collection = (filters={}) ->
   coll_name = fiveapi.collection_from_page()
   if coll_name
-    fiveapi.get_collection coll_name, (collection) ->
-      got_collection coll_name, collection
+    fiveapi.get_collection coll_name, filters, (collection) ->
+      filters.entries_count = collection["count"]
+      filters.collection = coll_name
+      render_pagination(filters)
+      got_collection coll_name, collection["articles"]
 
 load_haml = (view_name, callback) ->
   if hamls[view_name]
@@ -237,15 +277,17 @@ render_haml = (view_name, obj={}, callback) ->
 got_article = (id, article) ->
   view = "#{singularize article.collection}_article"
   render_haml view, article, (html) ->
-    $(".fiveapi_element[data-type=article]").append html      
-      
-got_collection = (name, collection) -> 
+    $(".fiveapi_element[data-type=article]").append html   
+
+got_collection = (name, collection) ->
+  collection_elem = $(".fiveapi_element[data-type=collection]")
+  collection_elem.html("")    
   @collection = collection
   $("body").trigger "got_collection"
+  $("body").trigger "got_collection2"
   _(collection).each (elem) ->                                
     render_haml name, elem, (html) ->                         
-      $(".fiveapi_element[data-type=collection]").append html 
-
+      collection_elem.append html 
 
 # helpers
 
@@ -254,7 +296,7 @@ haml.format_date = (date) ->
   "#{date.getDate()}/#{date.getMonth()+1}/#{date.getFullYear()}"
   
 haml.article_preview = (text) ->
-  max_length = 200
+  max_length = 550
   if text.length > max_length
     txt = text.split(/\[image_\d+\]/)[1]
     text = txt if txt
