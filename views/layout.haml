@@ -1,14 +1,14 @@
 -# contents in #head and #body will be appended to head and body tags in index.html, same thing for #title
 %div
   #head
-    #title RadioShout
+
     %meta{ name: "viewport", content: "width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;" }
     %link{ type: "text/sass", href: "/sass/reset.sass" }
     %link{ type: "text/sass", href: "/sass/app.sass" }
   #body
     #container
       #bg
-       %img{ src: "/images/background_trasp.png"}
+       %img{ src: "/images/sfondo1.png"}
       #inner_container
         #inner_inner_container
           #header
@@ -21,13 +21,12 @@
               %h1 
                 %a{ href: "/" } 
                   / RadioShout
-                  %img{ src: "/images/radioshout_logo.png"}
+                  %img{ src: "/images/logo_radioshout.png"}
                   
           #content_outer    
             %nav
               %a{ href: "/la_radio" } 		Radio
               %a{ href: "/eventi" } 		  Eventi
-              %a{ href: "/palinsesto" } 	Palinsesto
               %a{ href: "/shout_world" } 	Mondo Shout
               %a{ href: "/chi_siamo" } 	  Chi Siamo
             .clear

@@ -98,10 +98,10 @@ gal_anim = ->
 
 
 gal_resize = ->
-  setTimeout ->
-    height = $("#img_gal").width() / 4 * 2.5
-    $("#img_gal").height height
-  , 10
+  # setTimeout ->
+  #   height = $("#img_gal").width() / 4 * 2.5
+  #   $("#img_gal").height height
+  # , 10
 
 $(window).on "resize", ->
   gal_resize()
@@ -156,10 +156,12 @@ $("body").on "page_loaded", ->
       user: "makevoid",
       project: { radioshout: 2 },
       collections: { 
-        radio: 7,
         eventi: 6,
+        programmi: 7,
         mondo_shout: 8,
         chi_siamo: 9,
+        radio: 10,
+        #foto: 11,
       }
     }
     window.fiveapi = new Fiveapi( configs )
