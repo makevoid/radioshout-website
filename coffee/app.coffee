@@ -197,7 +197,16 @@ $("body").on "page_loaded", ->
     , 100
   
     $("body").on "page_js_loaded", ->
+      hover_nav()
       get_elements()  
+  
+hover_nav = ->
+  $("#header nav a").removeClass("selected")
+  $("#header nav a").each (idx, a) ->
+    if (location.pathname == $(a).attr("href"))
+      $(a).addClass("selected")
+     
+  
   
 hamls = {}
 

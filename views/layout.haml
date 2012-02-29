@@ -13,24 +13,25 @@
         #inner_inner_container
           #header
             %header
+              %nav
+                %a{ href: "/" } 		Home
+                %a{ href: "/la_radio" } 		Radio
+                %a{ href: "/eventi" } 		  Eventi
+                %a{ href: "/shout_world" } 	Mondo Shout
+                %a{ href: "/chi_siamo" } 	  Chi Siamo
+              .clear
               #stream
                 Streaming da mixtream 
                 .status
               #fiveapi_message  
               #fiveapi
-              %h1 
-                %a{ href: "/" } 
-                  / RadioShout
-                  %img{ src: "/images/logo_radioshout.png"}
+              
                   
-          #content_outer    
-            %nav
-              %a{ href: "/la_radio" } 		Radio
-              %a{ href: "/eventi" } 		  Eventi
-              %a{ href: "/shout_world" } 	Mondo Shout
-              %a{ href: "/chi_siamo" } 	  Chi Siamo
-            .clear
-          
+          #content_outer  
+            %h1 
+              %a{ href: "/" } 
+                / RadioShout
+                %img{ src: "/images/logo_radioshout.png"}
             #content
               != yield
   
