@@ -4,11 +4,14 @@
   "/eventi":     "eventi",
   "/palinsesto":     "palinsesto",
   "/shout_world":     "shout_world",
-  "/chi_siamo":      "chi_siamo",
+  "/chi_siamo":      "chi_siamo_page",
 
   "/interviste":     "interviste",
   "/recensioni":     "recensioni",
   "/arci":           "arci",
   "/foto":           "foto",
-  "/programmi":           "programmi"
+  "/programmi":           "programmi",
+  "/event":       "event",
+  "/eventi":      "events",
+  "/events/*":    "event"
 } 

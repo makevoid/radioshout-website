@@ -1,3 +1,12 @@
-%h2 Eventi
+- link = "/events/"+id+"-"+name_url
 
-%p eventi...
+.event
+  %h2
+    %a{ href: link }
+      %span.date 
+        = haml.format_date(published_at)
+        = "-"
+      = title
+  .text
+    != text
+  
