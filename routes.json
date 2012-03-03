@@ -10,7 +10,7 @@
   "/recensioni":     "recensioni",
   "/arci":           "arci",
   "/foto":           "foto",
-  "/programmi":           "programmi",
+  "/programmi":           "programmi_page",
   "/event":       "event",
   "/eventi":      "events",
   "/events/*":    "event"

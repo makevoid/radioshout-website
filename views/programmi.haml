@@ -1,5 +1,13 @@
-%h2 Programmi
+- link = "/programmi/"+id
 
-.fiveapi_element{ 'data-type': 'collection', 'data-name': "programmi" }
-
-.clear
+.article.radio
+  %h2
+    %a{ href: link }= title
+  .text
+    != haml.article_preview(text)
+  .article_infos
+    .by
+      = published_by
+    .published_at
+      = haml.format_date(published_at)
+  .clear_left

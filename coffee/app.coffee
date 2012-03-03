@@ -3,9 +3,9 @@ $("body").on "sass_loadeds", ->
   # g.fivetastic.dev_mode() # comment this in production
   $("body").off "page_loaded"
   gal_resize()
-  $.get "http://shoutcast.mixstream.net/js/status/usa7-vn:8012", (data) ->
-    console.log data
-    $("#stream .status").html data
+  # $.get "http://shoutcast.mixstream.net/js/status/usa7-vn:8012", (data) ->
+  #   console.log data
+  #   $("#stream .status").html data
   
   # megafix
   $("body").on "page_js_loaded", ->
