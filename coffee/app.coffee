@@ -13,6 +13,9 @@ $("body").on "sass_loadeds", ->
     $("#content").css({ opacity: 0 })
     $("#content").animate({ opacity: 1 }, 1000)
     gal_resize()
+    setTimeout ->
+      change_color()
+    , 200
 
     resize_issuu()
     if $(".issuu").length > 0
@@ -23,6 +26,10 @@ $("body").on "sass_loadeds", ->
   setTimeout ->
     resize_issuu()
   , 200
+  
+  setTimeout ->
+    change_color()
+  , 400
   
   if $(".issuu").length > 0
     $(window).on "resize", ->
@@ -200,13 +207,45 @@ $("body").on "page_loaded", ->
     $("body").on "page_js_loaded", ->
       hover_nav()
       get_elements()  
+
+
+colors = {
+  "/":            "rgba(179, 229, 230, 0.7)"
+  "/la_radio":    "rgba(204, 155, 0, 0.7)",
+  "/eventi":      "rgba(153, 153, 51, 0.7)",
+  "/shout_world": "rgba(204, 102, 51, 0.7)",
+  "/chi_siamo":   "rgba(153, 153, 153, 0.8)"
+}
   
 hover_nav = ->
   $("#header nav a").removeClass("selected")
   $("#header nav a").each (idx, a) ->
-    if (location.pathname == $(a).attr("href"))
+    path = $(a).attr("href")
+    if (location.pathname == path)
       $(a).addClass("selected")
-     
+      
+      
+change_color = ->
+  # nav
+  $("#header nav a").each (idx, a) ->
+    path = $(a).attr("href")
+    console.log path
+    color = colors[path]
+    $(a).css(background: color)
+    
+  # bg and hs
+  color = colors[location.pathname]
+  dark_color = $.xcolor.darken($.xcolor.darken($.xcolor.darken(color))).getCSS()
+  $("#inner_container h2, #inner_container h3, a.btn").css({background: dark_color})
+  $("#content_outer").css({background: color})
+  
+g.change_color = change_color
+  
+load_xcolor = ->
+  $.get "/vendor/jquery-xcolor.js", (data) ->
+    eval data
+    
+load_xcolor()
   
   
 hamls = {}
