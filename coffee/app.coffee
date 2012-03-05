@@ -28,7 +28,7 @@ $("body").on "sass_loadeds", ->
   , 200
   
   setTimeout ->
-    change_color()
+    change_color("now")
   , 400
   
   if $(".issuu").length > 0
@@ -210,7 +210,8 @@ $("body").on "page_loaded", ->
 
 
 colors = {
-  "/":            "rgba(179, 229, 230, 0.7)"
+  # "/":            "rgba(179, 229, 230, 0.7)"
+  "/":            "rgba(78,  230, 173, 0.7)"
   "/la_radio":    "rgba(204, 155, 0, 0.7)",
   "/eventi":      "rgba(153, 153, 51, 0.7)",
   "/shout_world": "rgba(204, 102, 51, 0.7)",
@@ -218,6 +219,7 @@ colors = {
 }
   
 hover_nav = ->
+  # todo: selected state has to replace color dinamically
   $("#header nav a").removeClass("selected")
   $("#header nav a").each (idx, a) ->
     path = $(a).attr("href")
@@ -225,19 +227,21 @@ hover_nav = ->
       $(a).addClass("selected")
       
       
-change_color = ->
+change_color = (at) ->
+  time = 300
+  time = 0 if at == "now"
   # nav
   $("#header nav a").each (idx, a) ->
     path = $(a).attr("href")
-    console.log path
+    # console.log path
     color = colors[path]
-    $(a).css(background: color)
+    $(a).animate({backgroundColor: color}, time)
     
   # bg and hs
   color = colors[location.pathname]
-  dark_color = $.xcolor.darken($.xcolor.darken($.xcolor.darken(color))).getCSS()
-  $("#inner_container h2, #inner_container h3, a.btn").css({background: dark_color})
-  $("#content_outer").css({background: color})
+  dark_color = $.xcolor.darken($.xcolor.darken($.xcolor.darken(color)))
+  $("#inner_container h2, #inner_container h3, a.btn").animate({backgroundColor: dark_color}, time)
+  $("#content_outer").animate({backgroundColor: color}, time)
   
 g.change_color = change_color
   
