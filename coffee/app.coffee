@@ -4,12 +4,12 @@ $("body").on "sass_loadeds", ->
   $("body").off "page_loaded"
   gal_resize()
   
-  $.get "http://jscrape.it/js/jscrape/jscrape.js", (data) ->
-    eval data
-  
-  $.get "http://shoutcast.mixstream.net/js/status/usa7-vn:8012", (data) ->
-    console.log data
-    $("#stream .status").html data
+  # $.get "http://jscrape.it/js/jscrape/jscrape.js", (data) ->
+  #   eval data
+  # 
+  # $.get "http://shoutcast.mixstream.net/js/status/usa7-vn:8012", (data) ->
+  #   console.log data
+  #   $("#stream .status").html data
       
   # megafix
   $("body").on "page_js_loaded", ->
