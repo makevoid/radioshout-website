@@ -141,7 +141,7 @@ puts = console.log
 
 if location.hostname == "localhost"
   # dev
-  hostz = "localhost:3000"
+  hostz = "fiveapi.com"
   local = "localhost:3001" 
 else
   # prod
