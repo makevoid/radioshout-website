@@ -5,7 +5,9 @@
   "/palinsesto":     "palinsesto",
   "/shout_world":     "shout_world",
   "/chi_siamo":      "chi_siamo_page",
-
+  "/video":      "video",
+  "/audio":      "audio",
+  "/articoli":      "articoli",
   "/interviste":     "interviste",
   "/recensioni":     "recensioni",
   "/arci":           "arci",
