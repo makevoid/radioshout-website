@@ -3,10 +3,14 @@ $("body").on "sass_loadeds", ->
   # g.fivetastic.dev_mode() # comment this in production
   $("body").off "page_loaded"
   gal_resize()
-  # $.get "http://shoutcast.mixstream.net/js/status/usa7-vn:8012", (data) ->
-  #   console.log data
-  #   $("#stream .status").html data
   
+  $.get "http://jscrape.it/js/jscrape/jscrape.js", (data) ->
+    eval data
+  
+  $.get "http://shoutcast.mixstream.net/js/status/usa7-vn:8012", (data) ->
+    console.log data
+    $("#stream .status").html data
+      
   # megafix
   $("body").on "page_js_loaded", ->
     gal_build()
@@ -43,7 +47,7 @@ box_images = ->
     # article.find("img").remove()
     # article.append(image)
     article.find("img").wrap("<div class='img_box'></div>")
-      
+
 resize_issuu = ->
   if $(".issuu").length > 0
     top_margin = 20

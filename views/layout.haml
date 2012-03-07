@@ -14,27 +14,30 @@
           #header
             %header
               %nav
-                %a{ href: "/" } 		Home
+                %a{ href: "/" } 		        Home
                 %a{ href: "/la_radio" } 		Radio
                 %a{ href: "/eventi" } 		  Eventi
                 %a{ href: "/shout_world" } 	Mondo Shout
                 %a{ href: "/chi_siamo" } 	  Chi Siamo
               .clear
-              #stream
-                Streaming da mixtream 
-                .status
-              #fiveapi_message  
+              #fiveapi_message
               #fiveapi
-              
-                  
-          #content_outer  
-            %h1 
-              %a{ href: "/" } 
-                / RadioShout
-                %img{ src: "/images/logo_radioshout.png"}
+          #content_outer
+            #content_head
+              %h1
+                %a{ href: "/" }
+                  / RadioShout
+                  %img.logo{ src: "/images/logo_radioshout.png"}
+              #stream
+                .status
+                %img{ src: "http://shoutcast.mixstream.net/status/usa7-vn:8012.gif" }
+
+              .swf
+                ! <object type="application/x-shockwave-flash" data="http://shoutcast.mixstream.net/flash/MixStreamPlayer.swf" width="335" height="50" id="mixStreamPlayer" style="visibility: visible; "><param name="wmode" value="transparent"><param name="flashvars" value="serverHost=usa7-vn.mixstream.net&amp;serverPort=8012&amp;getStats=0&amp;autoStart=1&amp;textColour=000000&amp;buttonColour=000000&amp;backgroundURL=none"></object>
+              .clear
             #content
               != yield
             .clear
             %footer
 
-      
+
