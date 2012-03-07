@@ -217,8 +217,14 @@ colors = {
   # "/":            "rgba(179, 229, 230, 0.7)"
   "/":            "rgba(78,  230, 173, 0.7)"
   "/la_radio":    "rgba(204, 155, 0, 0.7)",
+  "/programmi":   "rgba(204, 155, 0, 0.7)",
+  "/foto":        "rgba(204, 155, 0, 0.7)",
+  "/palinsesto":  "rgba(204, 155, 0, 0.7)",
   "/eventi":      "rgba(153, 153, 51, 0.7)",
   "/shout_world": "rgba(204, 102, 51, 0.7)",
+  "/video":       "rgba(204, 102, 51, 0.7)",
+  "/audio":       "rgba(204, 102, 51, 0.7)",
+  "/articoli":    "rgba(204, 102, 51, 0.7)",
   "/chi_siamo":   "rgba(153, 153, 153, 0.8)"
 }
   
@@ -243,9 +249,10 @@ change_color = (at) ->
     
   # bg and hs
   color = colors[location.pathname]
-  dark_color = $.xcolor.darken($.xcolor.darken($.xcolor.darken(color)))
-  $("#inner_container h2, #inner_container h3, a.btn").animate({backgroundColor: dark_color}, time)
-  $("#content_outer").animate({backgroundColor: color}, time)
+  if color
+    dark_color = $.xcolor.darken($.xcolor.darken($.xcolor.darken(color)))
+    $("#inner_container h2, #inner_container h3, a.btn").animate({backgroundColor: dark_color}, time)
+    $("#content_outer").animate({backgroundColor: color}, time)
   
 g.change_color = change_color
   
@@ -350,12 +357,17 @@ got_collection = (name, collection) ->
 
 # helpers
 
+# helpers
+
+haml.location_article_id = (location) -> 
+  _(location.pathname.split("/")).reverse()[0].split("-")[0]
+
 haml.format_date = (date) ->
   date = new Date(date)
   "#{date.getDate()}/#{date.getMonth()+1}/#{date.getFullYear()}"
   
 haml.article_preview = (text) ->
-  max_length = 550
+  max_length = 520
   if text.length > max_length
     txt = text.split(/\[image_\d+\]/)[1]
     text = txt if txt

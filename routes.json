@@ -8,6 +8,7 @@
   "/video":      "video",
   "/audio":      "audio",
   "/articoli":      "articoli",
+  "/articoli/*":      "article",
   "/interviste":     "interviste",
   "/recensioni":     "recensioni",
   "/arci":           "arci",
