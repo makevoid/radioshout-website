@@ -25,12 +25,16 @@
   -moz-border-radius: 10px
 
 body
-  font-family: Georgia, Helvetica, Arial, Verdana
+  font-family: Verdana, Georgia, Helvetica, Arial 
+  font-size: 100%
 
 * 
   -moz-box-sizing: border-box
   -webkit-box-sizing: border-box
   box-sizing: border-box
+  
+strong
+  font-weight: bold
 
 button
   padding: 5px 10px
@@ -87,11 +91,11 @@ a:hover
 #content
   margin: 0 0 0 10px
   
-.eventi img, .mondo_shout img, .chi_siamo img
+.eventi img, .chi_siamo img
   width: 40%
   margin: 0 1% 0 0
   float: left
-.eventi iframe, .mondo_shout iframe, .chi_siamo iframe  
+.eventi iframe, .chi_siamo iframe  
   width: 40%
   height: 200px
   margin: 0 1% 0 0
@@ -144,7 +148,10 @@ h2, h3
   font-family: lobster
   background: hsl(180, 100%, 20%)
   color: #FFF
-  font-size: 1.3em
+  font-size: 1.05em
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
   a
    color: #FFF
    padding: 0 0 0 5px
@@ -163,27 +170,34 @@ ul span
   font-size: 1em
   font-weight: normal
 
-.article.radio  
-  float: left
-  width: 26.8%
-  height: 151px
-  margin: 0 0 20px 0
-  overflow: hidden
-  position: relative
-  margin: 15px 3% 15px 3%
-  img
-    width: 100%
-    position: absolute
-    z-index: 1
-  .title
-    position: absolute
-    z-index: 3
+.article
   .text
-    position: absolute
-    z-index: 2
-    top: 30px
-    width: 100%
-    color: transparent
+    font-size: 85%
+    font-family: Verdana, Helvetica, sans-serif
+    letter-spacing: -0.5px
+    
+.previews
+  .article 
+    float: left
+    width: 26.8%
+    height: 151px
+    margin: 0 0 20px 0
+    overflow: hidden
+    position: relative
+    margin: 15px 3% 15px 3%
+    img
+      width: 100%
+      position: absolute
+      z-index: 1
+    .title
+      position: absolute
+      z-index: 3
+    .text
+      position: absolute
+      z-index: 2
+      top: 30px
+      width: 100%
+      color: transparent
   
 .btn
   padding: 4px 12px
@@ -191,6 +205,8 @@ ul span
   margin: 0 1% 0 0
 .btn:hover
   background: #033
+.back
+  margin: 0 0 10px 0
 
 .nav
   margin: 0 0 10px
@@ -223,3 +239,19 @@ ul span
   img
     width:  100%
     position: absolute
+    
+.page.article
+  img
+    margin: 0 15px 0 0px
+  img, .text
+    float: left
+    
+table.palinsesto
+  margin: 20px
+  border: 1px solid #DDD
+  td
+    padding: 3px
+    border: 1px solid #DDD
+
+.hidden
+  display:  none

@@ -155,7 +155,7 @@ else
 hostz = "http://#{hostz}"
 local = "http://#{local}"
 
-articles_per_page = 5
+articles_per_page = 6
 
 # fiveapi requires jquery/zepto
 
@@ -165,15 +165,17 @@ $("body").on "page_loaded", ->
   $.get "#{hostz}/fiveapi.js", (data) ->
     eval data
     configs = {
-      user: "makevoid",
+      user: "radioshout",
       project: { radioshout: 2 },
       collections: { 
         eventi: 6,
         programmi: 7,
-        mondo_shout: 8,
         chi_siamo: 9,
         radio: 10,
-        #foto: 11,
+        foto: 11,
+        video: 12,
+        audio: 13,
+        articoli: 14,
       }
     }
     window.fiveapi = new Fiveapi( configs )
@@ -214,18 +216,18 @@ $("body").on "page_loaded", ->
 
 
 colors = {
-  # "/":            "rgba(179, 229, 230, 0.7)"
-  "/":            "rgba(78,  230, 173, 0.7)"
-  "/la_radio":    "rgba(204, 155, 0, 0.7)",
-  "/programmi":   "rgba(204, 155, 0, 0.7)",
-  "/foto":        "rgba(204, 155, 0, 0.7)",
-  "/palinsesto":  "rgba(204, 155, 0, 0.7)",
-  "/eventi":      "rgba(153, 153, 51, 0.7)",
-  "/shout_world": "rgba(204, 102, 51, 0.7)",
-  "/video":       "rgba(204, 102, 51, 0.7)",
-  "/audio":       "rgba(204, 102, 51, 0.7)",
-  "/articoli":    "rgba(204, 102, 51, 0.7)",
-  "/chi_siamo":   "rgba(153, 153, 153, 0.8)"
+  "/":            "rgba(179, 229, 230, 0.7)"
+  #{}"/":            "rgba(78,  230, 173, 0.9)"
+  "/la_radio":    "rgba(204, 155, 0,   0.9)",
+  "/programmi":   "rgba(204, 155, 0,   0.9)",
+  "/foto":        "rgba(204, 155, 0,   0.9)",
+  "/palinsesto":  "rgba(204, 155, 0,   0.9)",
+  "/eventi":      "rgba(153, 153, 51,  0.9)",
+  "/shout_world": "rgba(204, 102, 51,  0.9)",
+  "/video":       "rgba(204, 102, 51,  0.9)",
+  "/audio":       "rgba(204, 102, 51,  0.9)",
+  "/articoli":    "rgba(204, 102, 51,  0.9)",
+  "/chi_siamo":   "rgba(153, 153, 153, 0.9)"
 }
   
 hover_nav = ->

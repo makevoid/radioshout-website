@@ -1,12 +1,13 @@
-.nav
-  %a{ href: "/video" }
-    %span Video
-    %img{ src: "/images/icons/icon_video.png" }
-  %a{ href: "/audio" }
-    %span Audio
-    %img{ src: "/images/icons/icon_audio.png" }
-  %a{ href: "/articoli" }
-    %span Articoli
-    %img{ src: "/images/icons/icon_articoli.png" }
-    
-%div audio....
+- link = "/audio/"+id
+
+.article
+  %h2
+    %a{ href: link }= title
+  .text
+    != haml.article_preview(text)
+  .article_infos
+    .by
+      = published_by
+    .published_at
+      = haml.format_date(published_at)
+  .clear_left
