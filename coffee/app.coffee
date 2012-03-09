@@ -72,10 +72,12 @@ resize_issuu = ->
 
 
 apply_markdown = ->
-  $(".md").each  -> 
-    text = $(this).html()
-    text = markdown.toHTML text
-    $(this).html(text)
+  # $(".md").each  -> 
+  #   text = $(this).html()
+  #   text = markdown.toHTML text
+  #   console.log text
+  #   text = text.replaceAll(/a/, "<br>")
+  #   $(this).html(text)
 
 restore_gal = ->
   $("#img_gal img").css "opacity", 0
