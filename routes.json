@@ -20,5 +20,7 @@
   "/programmi/*":   "programma",
   "/event":         "event",
   "/eventi":        "events",
-  "/events/*":      "event"
+  "/events/*":      "event",
+  "/arci":     "arci",
+  "/collabs":     "collabs"
 } 

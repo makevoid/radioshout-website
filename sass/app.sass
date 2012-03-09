@@ -65,6 +65,7 @@ a:hover
   position: absolute
   z-index: 1
   width: 100%
+  min-width: 450px
   img
     width: 100%
 
@@ -72,6 +73,7 @@ a:hover
   position: absolute
   z-index: 2
   width: 100%
+  min-width: 450px
 
   
 #header
@@ -114,6 +116,9 @@ h1 img.logo
   width: 30%
   min-width: 335px
   padding: 10px
+  .status
+    float: right
+  
   
 nav
   margin: 9px 0 2px
@@ -228,6 +233,9 @@ ul span
     background: rgba(255, 255, 255, 0.7)
     text-shadow: none
     font-family: Verdana
+
+.subnav
+  margin: 5px 0 10px 0 
     
 #img_gal
   width:  98%
@@ -239,6 +247,33 @@ ul span
   img
     width:  100%
     position: absolute
+    
+    
+#img_gal  
+  position: relative
+  overflow: hidden
+  .caption
+    position: absolute
+    font-family: bebas_neue 
+    color: #FFF
+    padding: 10px
+    background: #555
+    opacity: 0.8
+    width: 35.5%
+    font-size: 1.5em
+    z-index: 4
+  img 
+    position: absolute
+    width: 100%
+    -webkit-transition-property: opacity
+    -webkit-transition-duration: 1s
+    -webkit-transition-timing-function: ease-in-out
+    -moz-transition-property: opacity
+    -moz-transition-duration: 1s
+    -moz-transition-timing-function: ease-in-out
+    opacity: 0
+  img:first-child
+    opacity: 1    
     
 .page.article
   img
