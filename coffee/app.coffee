@@ -6,6 +6,9 @@ $("body").on "sass_loadeds", ->
   # g.fivetastic.dev_mode() # comment this in production
   $("body").off "page_loaded"
   gal_resize()
+  setTimeout ->
+    apply_markdown()
+  , 200
   
   # $.get "http://jscrape.it/js/jscrape/jscrape.js", (data) ->
   #   eval data
@@ -66,6 +69,13 @@ resize_issuu = ->
 #     
 # # APIS: fb, lastfm, delicious, twitter
 # require_api "lastfm"
+
+
+apply_markdown = ->
+  $(".md").each  -> 
+    text = $(this).html()
+    text = markdown.toHTML text
+    $(this).html(text)
 
 restore_gal = ->
   $("#img_gal img").css "opacity", 0
@@ -230,7 +240,8 @@ colors = {
   "/video":       "rgba(204, 102, 51,  0.9)",
   "/audio":       "rgba(204, 102, 51,  0.9)",
   "/articoli":    "rgba(204, 102, 51,  0.9)",
-  "/chi_siamo":   "rgba(153, 153, 153, 0.9)"
+  "/chi_siamo":   "rgba(153, 153, 153, 0.9)",
+  "/arci":        "rgba(204, 204, 51, 0.9)"
 }
   
 hover_nav = ->

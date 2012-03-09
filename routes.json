@@ -21,6 +21,7 @@
   "/event":         "event",
   "/eventi":        "events",
   "/events/*":      "event",
-  "/arci":     "arci",
-  "/collabs":     "collabs"
+  "/arci":          "arci",
+  "/collabs":       "collabs",
+  "/staff":         "staff"
 } 
