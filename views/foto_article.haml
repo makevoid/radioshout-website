@@ -1,0 +1,8 @@
+
+- link = "/foto/"+id
+
+.article.event
+%h2
+  %a{ href: link }= title
+.text
+  != haml.article_preview(text)

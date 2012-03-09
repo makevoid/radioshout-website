@@ -1,4 +1,7 @@
 g = window
+
+$.ajaxSetup { cache: false }
+
 $("body").on "sass_loadeds", ->
   # g.fivetastic.dev_mode() # comment this in production
   $("body").off "page_loaded"
