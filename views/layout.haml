@@ -26,11 +26,17 @@
           #content_outer
             #content_head
               #stream
-                %img.status{ src: "http://shoutcast.mixstream.net/status/usa7-vn:8012.gif" }
+
+                -# %img.status{ src: "http://shoutcast.mixstream.net/status/usa7-vn:8012.gif" }
 
                 .swf
                   ! <object type="application/x-shockwave-flash" data="http://shoutcast.mixstream.net/flash/MixStreamPlayer.swf" width="335" height="50" id="mixStreamPlayer" style="visibility: visible; "><param name="wmode" value="transparent"><param name="flashvars" value="serverHost=usa7-vn.mixstream.net&amp;serverPort=8012&amp;getStats=0&amp;autoStart=0&amp;textColour=000000&amp;buttonColour=FFFFFF&amp;backgroundURL=none"></object>
-                  
+
+              .share
+                %a{ href: "https://twitter.com/#!/redashout" }
+                  %img.icon{ src: "/images/icons/twitter.png" }
+                %a{ href: "https://www.facebook.com/pages/RadioShout/137967656273296" }
+                  %img.icon{ src: "/images/icons/facebook.png" }
               %h1
                 %a{ href: "/" }
                   / RadioShout

@@ -170,7 +170,8 @@ else
 hostz = "http://#{hostz}"
 local = "http://#{local}"
 
-articles_per_page = 6
+# articles_per_page = 6
+articles_per_page = 18
 
 # fiveapi requires jquery/zepto
 
@@ -191,6 +192,7 @@ $("body").on "page_loaded", ->
         video: 12,
         audio: 13,
         articoli: 14,
+        podcasts: 15,
       }
     }
     window.fiveapi = new Fiveapi( configs )
@@ -237,12 +239,15 @@ colors = {
   "/programmi":   "rgba(204, 155, 0,   0.9)",
   "/foto":        "rgba(204, 155, 0,   0.9)",
   "/palinsesto":  "rgba(204, 155, 0,   0.9)",
+  "/podcasts":    "rgba(204, 155, 0,   0.9)",
   "/eventi":      "rgba(153, 153, 51,  0.9)",
   "/shout_world": "rgba(204, 102, 51,  0.9)",
   "/video":       "rgba(204, 102, 51,  0.9)",
   "/audio":       "rgba(204, 102, 51,  0.9)",
   "/articoli":    "rgba(204, 102, 51,  0.9)",
   "/chi_siamo":   "rgba(153, 153, 153, 0.9)",
+  "/collabs":     "rgba(153, 153, 153, 0.9)",
+  "/staff":       "rgba(153, 153, 153, 0.9)",
   "/arci":        "rgba(204, 204, 51, 0.9)"
 }
   
