@@ -160,7 +160,7 @@ puts = console.log
 
 if location.hostname == "localhost"
   # dev
-  hostz = "fiveapi.com"
+  hostz = "localhost:3000"
   local = "localhost:3001" 
 else
   # prod
@@ -288,11 +288,32 @@ load_xcolor()
   
 hamls = {}
 
+
+bind_audio = (image_id) ->
+  $("#audio_btn_#{image_id}").off "click"
+  $("#audio_btn_#{image_id}").on "click", -> 
+    audio = $("#audio_#{image_id}").get(0)
+    if audio.paused
+      audio.play() 
+      $(this).html "||"
+    else 
+      audio.pause()
+      $(this).html ">"
+
+audio_view = (file) -> 
+  "<audio id='audio_#{file.id}'> <source src='#{hostz}#{file.url}' type='audio/mp3'></source> </audio><div id='audio_btn_#{file.id}' class='audio_btns'>&gt;</div>"
+  
+image_view = (file) -> 
+  "![](#{hostz}#{file.url})"
+
 write_images = (obj) =>
-  # obj.text = 
   for image in obj.images
     regex = new RegExp "\\[image_#{image.id}\\]"
-    obj.text = obj.text.replace regex, "![](#{hostz}#{image.url})"
+    view = if image.name.match(/mp3/) then audio_view(image) else image_view(image)
+    obj.text = obj.text.replace regex, view
+    $("#audio_#{image.id}").available ->
+      bind_audio image.id
+    _.delay(bind_audio, 300, image.id)
   obj
 
 write_videos = (text) ->
@@ -301,8 +322,9 @@ write_videos = (text) ->
   
 markup = (obj) ->  
   obj = write_images obj
-  text = markdown.toHTML obj.text
-  write_videos text
+  # obj.text = markdown.toHTML obj.text
+  obj.text = write_videos obj.text
+  obj.text
   
 singularize = (word) ->
   word.replace /s$/, ''
