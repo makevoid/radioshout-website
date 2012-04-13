@@ -1,0 +1,109 @@
+**Presidente**
+
+Stefano Magherini
+
+**Aspetti burocratici**
+
+Flora Braschi, Latini Cosimo, Niccolò Lanzoni
+
+**Responsabile Arci**
+
+Michele Sacco, Matteo Materassi, Cosimo Latini
+
+**Tesoreria**
+
+Flora Braschi
+
+**Gruppi Emergenti**
+
+Tommaso Bonaiuti
+
+**Grafico**
+
+Tommaso Dallai  &   Niccolò Gambassi
+
+**Programmatore**
+
+Riccardo Schillaci
+
+**REDAZIONE**
+
+\(musica) Michele Kruisinga
+
+\(arte e spettacolo) Niccolò Gambassi
+
+\(attualità) Gianluca Fiorindi
+
+\(eventi e pubblicità) Niccolò Bonaiuti
+
+\(sito web) Riccardo Schillaci
+
+
+
+**GRUPPO MUSICA**
+
+Elena Raugei
+
+Stefano Magherini
+
+Filippo Rocchi
+
+Giacomo Gandossi
+
+Michele Kruisinga
+
+Tommaso Dettori
+
+
+**GRUPPO ARTE & SPETTACOLI**
+
+Niccolò Gambassi
+
+Tommaso Dallai
+
+Eleonora Belpassi
+
+Gianluca Fiorindi
+
+Erik Haglund
+
+Claudia Angelini
+
+
+**GRUPPO ATTUALITA'**
+
+Cosimo Renzi
+
+Niccolò Lanzoni
+
+Flora Braschi
+
+
+**GRUPPO EVENTI**
+
+Niccolò Bonaiuti
+
+Cosimo Bartoli
+
+Tommaso Martelli
+
+Niccolò Gamabassi
+
+Tommaso Dallai
+
+
+**GRUPPO SITO**
+
+Riccardo Schillaci
+
+Lapo Nocentini
+
+Filippo Rocchi
+
+Gianluca Fiorindi
+
+
+
+**RESPONSABILE ARCI**
+
+Michele Sacco

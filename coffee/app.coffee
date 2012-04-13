@@ -72,12 +72,12 @@ resize_issuu = ->
 
 
 apply_markdown = ->
-  # $(".md").each  -> 
-  #   text = $(this).html()
-  #   text = markdown.toHTML text
-  #   console.log text
-  #   text = text.replaceAll(/a/, "<br>")
-  #   $(this).html(text)
+  $(".markdown").each  -> 
+    name = $(this).data("name")
+    $.get "/pages/#{name}.md", (data) =>
+      # console.log data
+      text = markdown.toHTML data
+      $(this).html text
 
 restore_gal = ->
   $("#img_gal img").css "opacity", 0
@@ -229,7 +229,7 @@ $("body").on "page_loaded", ->
   
     $("body").on "page_js_loaded", ->
       hover_nav()
-      get_elements()  
+      get_elements() 
 
 
 colors = {
@@ -241,6 +241,7 @@ colors = {
   "/palinsesto":  "rgba(204, 155, 0,   0.9)",
   "/podcasts":    "rgba(204, 155, 0,   0.9)",
   "/eventi":      "rgba(153, 153, 51,  0.9)",
+  "/events":      "rgba(153, 153, 51,  0.9)",
   "/shout_world": "rgba(204, 102, 51,  0.9)",
   "/video":       "rgba(204, 102, 51,  0.9)",
   "/audio":       "rgba(204, 102, 51,  0.9)",
@@ -271,7 +272,8 @@ change_color = (at) ->
     $(a).animate({backgroundColor: color}, time)
     
   # bg and hs
-  color = colors[location.pathname]
+  path = "/#{location.pathname.split("/")[1]}"#
+  color = colors[path]
   if color
     dark_color = $.xcolor.darken($.xcolor.darken($.xcolor.darken(color)))
     $("#inner_container h2, #inner_container h3, a.btn").animate({backgroundColor: dark_color}, time)
@@ -289,10 +291,10 @@ load_xcolor()
 hamls = {}
 
 
-bind_audio = (image_id) ->
-  $("#audio_btn_#{image_id}").off "click"
-  $("#audio_btn_#{image_id}").on "click", -> 
-    audio = $("#audio_#{image_id}").get(0)
+bind_audio = (file_id) ->
+  $("#audio_btn_#{file_id}").off "click"
+  $("#audio_btn_#{file_id}").on "click", -> 
+    audio = $("#audio_#{file_id}").get(0)
     if audio.paused
       audio.play() 
       $(this).html "||"
@@ -301,15 +303,17 @@ bind_audio = (image_id) ->
       $(this).html ">"
 
 audio_view = (file) -> 
-  "<audio id='audio_#{file.id}'> <source src='#{hostz}#{file.url}' type='audio/mp3'></source> </audio><div id='audio_btn_#{file.id}' class='audio_btns'>&gt;</div>"
+  url = "#{hostz}#{file.url}"
+  "<audio id='audio_#{file.id}'> <source src='#{url}' type='audio/mp3'></source> </audio><div id='audio_btn_#{file.id}' class='audio_btns'>&gt;</div>"
   
-image_view = (file) -> 
-  "![](#{hostz}#{file.url})"
+file_view = (file) -> 
+  url = "#{hostz}#{file.url}"
+  "<img src='#{url}' />"
 
 write_images = (obj) =>
   for image in obj.images
-    regex = new RegExp "\\[image_#{image.id}\\]"
-    view = if image.name.match(/mp3/) then audio_view(image) else image_view(image)
+    regex = new RegExp "\\[(file|image)_#{image.id}\\]"
+    view = if image.name.match(/mp3/) then audio_view(image) else file_view(image)
     obj.text = obj.text.replace regex, view
     $("#audio_#{image.id}").available ->
       bind_audio image.id
@@ -320,9 +324,9 @@ write_videos = (text) ->
   # [youtube_2b_8yOZJn8A]
   text.replace /\[youtube_(.+)\]/, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>"
   
-markup = (obj) ->  
+markup = (obj) ->    
+  obj.text = markdown.toHTML obj.text
   obj = write_images obj
-  # obj.text = markdown.toHTML obj.text
   obj.text = write_videos obj.text
   obj.text
   
@@ -414,7 +418,7 @@ haml.format_date = (date) ->
 haml.article_preview = (text) ->
   max_length = 520
   if text.length > max_length
-    txt = text.split(/\[image_\d+\]/)[1]
+    txt = text.split(/\[file_\d+\]/)[1]
     text = txt if txt
     "#{text.substring(0, max_length)}..."
   else
