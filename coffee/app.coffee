@@ -404,7 +404,6 @@ got_collection = (name, collection) ->
     render_haml name, elem, (html) ->                         
       collection_elem.append html 
 
-# helpers
 
 # helpers
 
@@ -417,9 +416,11 @@ haml.format_date = (date) ->
   
 haml.article_preview = (text) ->
   max_length = 520
+  txt = text.split(/(<img.*?>)/)[1]
   if text.length > max_length
-    txt = text.split(/\[file_\d+\]/)[1]
+    # txt = text.split(/\[(file|image)_\d+\]/)[1]
     text = txt if txt
     "#{text.substring(0, max_length)}..."
   else
+    text = txt if txt
     text
