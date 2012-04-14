@@ -1,6 +1,17 @@
-**Presidente**
+<redazione@radioshout.it>
 
-Stefano Magherini
+<http://facebook.com/redazione.radioshout>
+
+<http://facebook.com/pages/RadioShout/137967656273296>
+
+[Twitter](twitter.com/#!/RedaShout)
+
+
+---
+
+**Presidente**
+ 
+Stefano Magherini <stefo.maghe@hotmail.it>
 
 **Aspetti burocratici**
 
@@ -13,11 +24,11 @@ Michele Sacco, Matteo Materassi, Cosimo Latini
 **Tesoreria**
 
 Flora Braschi
-
+ 
 **Gruppi Emergenti**
 
 Tommaso Bonaiuti
-
+ 
 **Grafico**
 
 Tommaso Dallai  &   Niccolò Gambassi
@@ -25,85 +36,13 @@ Tommaso Dallai  &   Niccolò Gambassi
 **Programmatore**
 
 Riccardo Schillaci
-
+ 	 	 	 
 **REDAZIONE**
 
-\(musica) Michele Kruisinga
+(musica) Alessandro Gallorini e Francesco Nucci
 
-\(arte e spettacolo) Niccolò Gambassi
+(arte e spettacolo) Eleonora Belpassi
 
-\(attualità) Gianluca Fiorindi
+(attualità) Giacomo Gandossi
 
-\(eventi e pubblicità) Niccolò Bonaiuti
-
-\(sito web) Riccardo Schillaci
-
-
-
-**GRUPPO MUSICA**
-
-Elena Raugei
-
-Stefano Magherini
-
-Filippo Rocchi
-
-Giacomo Gandossi
-
-Michele Kruisinga
-
-Tommaso Dettori
-
-
-**GRUPPO ARTE & SPETTACOLI**
-
-Niccolò Gambassi
-
-Tommaso Dallai
-
-Eleonora Belpassi
-
-Gianluca Fiorindi
-
-Erik Haglund
-
-Claudia Angelini
-
-
-**GRUPPO ATTUALITA'**
-
-Cosimo Renzi
-
-Niccolò Lanzoni
-
-Flora Braschi
-
-
-**GRUPPO EVENTI**
-
-Niccolò Bonaiuti
-
-Cosimo Bartoli
-
-Tommaso Martelli
-
-Niccolò Gamabassi
-
-Tommaso Dallai
-
-
-**GRUPPO SITO**
-
-Riccardo Schillaci
-
-Lapo Nocentini
-
-Filippo Rocchi
-
-Gianluca Fiorindi
-
-
-
-**RESPONSABILE ARCI**
-
-Michele Sacco
+(eventi e pubblicità) Niccolò Bonaiuti
