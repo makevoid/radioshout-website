@@ -23,6 +23,10 @@ $("body").on "sass_loadeds", ->
     $("#content").css({ opacity: 0 })
     $("#content").animate({ opacity: 1 }, 1000)
     gal_resize()
+    
+    setTimeout ->
+      apply_markdown()
+    , 200
     setTimeout ->
       change_color()
     , 200
