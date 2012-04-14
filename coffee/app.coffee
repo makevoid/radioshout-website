@@ -218,7 +218,6 @@ $("body").on "page_loaded", ->
       $("body").off "got_collection2"
       
     $("body").on "got_collection", ->
-      console.log data
       setTimeout -> 
         box_images()
         gal_build()
@@ -392,7 +391,6 @@ render_haml = (view_name, obj={}, callback) ->
 
 got_article = (id, article) ->
   view = "#{singularize article.collection}_article"
-  console.log article
   render_haml view, article, (html) ->
     $(".fiveapi_element[data-type=article]").append html   
 
