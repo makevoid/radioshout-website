@@ -5,6 +5,8 @@ gem "rack"
 # gem "rack-cache"
 
 group :development, :test do
+  gem "rerun"
+  
   gem "guard"
   gem "guard-livereload"
   gem "guard-rspec"

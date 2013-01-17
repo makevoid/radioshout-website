@@ -5,25 +5,26 @@ $.ajaxSetup { cache: false }
 $("body").on "sass_loadeds", ->
   # g.fivetastic.dev_mode() # comment this in production
   $("body").off "page_loaded"
-  gal_resize()
+
+  images_resize()
   setTimeout ->
     apply_markdown()
   , 200
-  
+
   # $.get "http://jscrape.it/js/jscrape/jscrape.js", (data) ->
   #   eval data
-  # 
+  #
   # $.get "http://shoutcast.mixstream.net/js/status/usa7-vn:8012", (data) ->
   #   console.log data
   #   $("#stream .status").html data
-      
+
   # megafix
   $("body").on "page_js_loaded", ->
     gal_build()
     $("#content").css({ opacity: 0 })
     $("#content").animate({ opacity: 1 }, 1000)
-    gal_resize()
-    
+    images_resize()
+
     setTimeout ->
       apply_markdown()
     , 200
@@ -31,52 +32,39 @@ $("body").on "sass_loadeds", ->
       change_color()
     , 200
 
-    resize_issuu()
-    if $(".issuu").length > 0
-      $(window).on "resize", ->
-        resize_issuu()
-    
-  # resize issuu
-  setTimeout ->
-    resize_issuu()
-  , 200
-  
   setTimeout ->
     change_color("now")
   , 400
-  
-  if $(".issuu").length > 0
-    $(window).on "resize", ->
-      resize_issuu()
-      
-box_images = ->
-  for article in $(".article")
-    # TODO: when $(".article").loaded or markdown loaded, box image
-    article = $(article)
-    # image = article.find("img")
-    # article.find("img").remove()
-    # article.append(image)
-    article.find("img").wrap("<div class='img_box'></div>")
 
-resize_issuu = ->
-  if $(".issuu").length > 0
-    top_margin = 20
-    page_margin = 15
-    height = $("header").height() + top_margin + page_margin*2
-    iss_height = $(window).height() - height
-    # console.log iss_height
-    $(".issuu, .issuu embed").height iss_height
-  
+box_images = ->
+  $(".article, .event").each (idx, article) ->
+    article = $(article)
+    link = article.find("h2 a").attr("href") || article.find("h3 a").attr("href")
+    img = article.find("img")
+    img.wrap("<div class='img_box'></div>")
+    img.wrap("<a href='#{link}'></a>") if link
+
+    # TODO:
+    # $(".article img, .event img").imagesLoaded =>
+
+    height = Math.max img.height(), 500
+    console.log height
+    article.find(".img_box").height height
+
+
+
 # require_api = (api) ->
 #   $.get "/fivetastic/api/lastfm.coffee", (coffee) ->
 #     eval CoffeeScript.compile(coffee)
-#     
+#
 # # APIS: fb, lastfm, delicious, twitter
 # require_api "lastfm"
 
 
+
+
 apply_markdown = ->
-  $(".markdown").each  -> 
+  $(".markdown").each  ->
     name = $(this).data("name")
     $.get "/pages/#{name}.md", (data) =>
       # console.log data
@@ -94,14 +82,14 @@ titles = []
 
 gal_build = ->
   return unless @collection #&& @collection[0]["collection"] == "articoli"
-  images = for article in @collection 
+  images = for article in @collection
     img = article.images[0]
     img.title = article.title if img
     img
-  images = _(images).compact()  
-  $("#img_gal img").remove() 
+  images = _(images).compact()
+  $("#img_gal img").remove()
   titles = []
-  for image in images  
+  for image in images
     titles.push image.title
     $("#img_gal").append("<img src='#{hostz}#{image.url}'>")
     $("#img_gal img").css({opacity: 0})
@@ -112,7 +100,7 @@ gal_anim = ->
   time = 5000
   # time = 1000
   gal_build() if $("#img_gal img").length < 1
-    
+
   setTimeout =>
     images = _($("#img_gal img")).map (el) -> el
     cond = cur_idx >= images.length-1
@@ -127,18 +115,20 @@ gal_anim = ->
   , time
 
 
-gal_resize = ->
+images_resize = ->
+  $(".img_box")
+
   # setTimeout ->
   #   height = $("#img_gal").width() / 4 * 2.5
   #   $("#img_gal").height height
   # , 10
 
 $(window).on "resize", ->
-  gal_resize()
+  images_resize()
 
 
 
-######## 
+########
 # fiveapi
 
 # $(document).ajaxSend (event, xhr, settings) ->
@@ -150,7 +140,7 @@ unless window.console || console.log
   console.log = ->
 
 puts = console.log
-  
+
 # models
 
 # mollections
@@ -165,7 +155,7 @@ puts = console.log
 if location.hostname == "localhost"
   # dev
   hostz = "localhost:3000"
-  local = "localhost:3001" 
+  local = "localhost:3001"
 else
   # prod
   hostz = "fiveapi.com"
@@ -181,13 +171,13 @@ articles_per_page = 18
 
 $("body").on "page_loaded", ->
   hover_nav()
-  
+
   $.get "#{hostz}/fiveapi.js", (data) ->
     eval data
     configs = {
       user: "radioshout",
       project: { radioshout: 2 },
-      collections: { 
+      collections: {
         eventi: 6,
         programmi: 7,
         chi_siamo: 9,
@@ -201,28 +191,32 @@ $("body").on "page_loaded", ->
     }
     window.fiveapi = new Fiveapi( configs )
     fiveapi.activate()
-    
+
     # default sort keys: published_at, id DESC
-  
+
     # #TODO: debug code, remove in production
     # $("#fiveapi_edit").trigger "click"
     # fiveapi.start_edit_mode()
     # setTimeout ->
     #     $(".articles a").first().trigger "click"
     #   , 200
-  
+
     # fiveapi.start_edit_mode()
     # setTimeout ->
     #     $(".articles a").first().trigger "click"
     #   , 200
-      
-      
+
+    $(".nav img, .nav img span").hover ->
+      $(this).parent().find("span").show()
+    , ->
+      $(this).parent().find("span").hide()
+
     $("body").on "got_collection2", ->
       gal_anim()
       $("body").off "got_collection2"
-      
+
     $("body").on "got_collection", ->
-      setTimeout -> 
+      setTimeout ->
         box_images()
         gal_build()
       , 200
@@ -230,10 +224,10 @@ $("body").on "page_loaded", ->
     setTimeout ->
       get_elements()
     , 100
-  
+
     $("body").on "page_js_loaded", ->
       hover_nav()
-      get_elements() 
+      get_elements()
 
 
 colors = {
@@ -255,7 +249,7 @@ colors = {
   "/staff":       "rgba(153, 153, 153, 0.9)",
   "/arci":        "rgba(204, 204, 51, 0.9)"
 }
-  
+
 hover_nav = ->
   # todo: selected state has to replace color dinamically
   $("#header nav a").removeClass("selected")
@@ -263,18 +257,21 @@ hover_nav = ->
     path = $(a).attr("href")
     if (location.pathname == path)
       $(a).addClass("selected")
-      
-      
+
+
 change_color = (at) ->
   time = 300
   time = 0 if at == "now"
+
+  last_elem = null
+
   # nav
   $("#header nav a").each (idx, a) ->
     path = $(a).attr("href")
-    # console.log path
     color = colors[path]
     $(a).animate({backgroundColor: color}, time)
-    
+    $(a).css({borderBottom: "1px solid #{color}"})
+
   # bg and hs
   path = "/#{location.pathname.split("/")[1]}"#
   color = colors[path]
@@ -282,35 +279,37 @@ change_color = (at) ->
     dark_color = $.xcolor.darken($.xcolor.darken($.xcolor.darken(color)))
     $("#inner_container h2, #inner_container h3, a.btn").animate({backgroundColor: dark_color}, time)
     $("#content_outer").animate({backgroundColor: color}, time)
-  
+
 g.change_color = change_color
-  
-load_xcolor = ->
+
+load_vendors = ->
+  # FIXME: rewrite with iced coffee || deferred get?
   $.get "/vendor/jquery-xcolor.js", (data) ->
-    eval data
-    
-load_xcolor()
-  
-  
+    $.get "/vendor/jquery_imagesloaded.js", (data) ->
+      eval data
+
+load_vendors()
+
+
 hamls = {}
 
 
 bind_audio = (file_id) ->
   $("#audio_btn_#{file_id}").off "click"
-  $("#audio_btn_#{file_id}").on "click", -> 
+  $("#audio_btn_#{file_id}").on "click", ->
     audio = $("#audio_#{file_id}").get(0)
     if audio.paused
-      audio.play() 
+      audio.play()
       $(this).html "||"
-    else 
+    else
       audio.pause()
       $(this).html ">"
 
-audio_view = (file) -> 
+audio_view = (file) ->
   url = "#{hostz}#{file.url}"
   "<audio id='audio_#{file.id}'> <source src='#{url}' type='audio/mp3'></source> </audio><div id='audio_btn_#{file.id}' class='audio_btns'>&gt;</div>"
-  
-file_view = (file) -> 
+
+file_view = (file) ->
   url = "#{hostz}#{file.url}"
   "<img src='#{url}' />"
 
@@ -327,27 +326,27 @@ write_images = (obj) =>
 write_videos = (text) ->
   # [youtube_2b_8yOZJn8A]
   text.replace /\[youtube_(.+)\]/, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>"
-  
-markup = (obj) ->    
+
+markup = (obj) ->
   obj.text = markdown.toHTML obj.text
   obj = write_images obj
   obj.text = write_videos obj.text
   obj.text
-  
+
 singularize = (word) ->
   word.replace /s$/, ''
 
 get_elements = ->
-  get_article()  
+  get_article()
   per_page = if location.pathname == "/chi_siamo" ||  location.pathname ==  "/collabs"
     50
   else
     articles_per_page
-    
-  filters = { limit: per_page, offset: 0 }
-  get_collection(filters)  
 
-render_pagination = (pag) ->  
+  filters = { limit: per_page, offset: 0 }
+  get_collection(filters)
+
+render_pagination = (pag) ->
   total_pages = pag["entries_count"] / pag["limit"]
   current_page = pag["offset"]*pag["limit"]
   pages_view =  for i in [1..total_pages]
@@ -383,7 +382,7 @@ load_haml = (view_name, callback) ->
     callback hamls[view_name]
   else
     $.get "#{local}/views/#{view_name}.haml", (data) =>
-      hamls[view_name] = data 
+      hamls[view_name] = data
       callback hamls[view_name]
 
 render_haml = (view_name, obj={}, callback) ->
@@ -396,28 +395,28 @@ render_haml = (view_name, obj={}, callback) ->
 got_article = (id, article) ->
   view = "#{singularize article.collection}_article"
   render_haml view, article, (html) ->
-    $(".fiveapi_element[data-type=article]").append html   
+    $(".fiveapi_element[data-type=article]").append html
 
 got_collection = (name, collection) ->
   collection_elem = $(".fiveapi_element[data-type=collection]")
-  collection_elem.html("")    
+  collection_elem.html("")
   @collection = collection
   $("body").trigger "got_collection"
   $("body").trigger "got_collection2"
-  _(collection).each (elem) ->                                
-    render_haml name, elem, (html) ->                         
-      collection_elem.append html 
+  _(collection).each (elem) ->
+    render_haml name, elem, (html) ->
+      collection_elem.append html
 
 
 # helpers
 
-haml.location_article_id = (location) -> 
+haml.location_article_id = (location) ->
   _(location.pathname.split("/")).reverse()[0].split("-")[0]
 
 haml.format_date = (date) ->
   date = new Date(date)
   "#{date.getDate()}/#{date.getMonth()+1}/#{date.getFullYear()}"
-  
+
 haml.article_preview = (text) ->
   max_length = 520
   txt = text.split(/(<img.*?>)/)[1]
