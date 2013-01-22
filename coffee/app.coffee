@@ -206,10 +206,10 @@ $("body").on "page_loaded", ->
     #     $(".articles a").first().trigger "click"
     #   , 200
 
-    $(".nav img, .nav img span").hover ->
-      $(this).parent().find("span").show()
-    , ->
-      $(this).parent().find("span").hide()
+    # $(".nav img, .nav img span").hover ->
+    #   $(this).parent().find("span").show()
+    # , ->
+    #   $(this).parent().find("span").hide()
 
     $("body").on "got_collection2", ->
       gal_anim()
@@ -415,7 +415,11 @@ haml.location_article_id = (location) ->
 
 haml.format_date = (date) ->
   date = new Date(date)
-  "#{date.getDate()}/#{date.getMonth()+1}/#{date.getFullYear()}"
+  out = "#{date.getDate()}/#{date.getMonth()+1}/#{date.getFullYear()}"
+  if out == "1/1/1970"
+    ""
+  else
+    out
 
 haml.article_preview = (text) ->
   max_length = 520

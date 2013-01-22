@@ -253,24 +253,27 @@ ul span
 .nav
   margin: 0 0 10px
   img
-    width: 7%
+    width: 100%
   a
+    width: 7%
+    display: inline-block
     position: relative
-    font-size: 0.5em
+    font-size: 0.75em
+    text-transform: uppercase
     color: #000
     margin: 0 0.5%
-
-  a:hover span
-    display: block
   span
     display: none
     position: absolute
-    top: -20px
+    top: 30px
     text-align: center
     width: 100%
     background: rgba(255, 255, 255, 0.7)
     text-shadow: none
     font-family: Verdana
+    padding: 2px 0
+  a:hover span
+    display: block
 
 .subnav
   margin: 5px 0 10px 0
@@ -314,8 +317,6 @@ ul span
     opacity: 1
 
 .page.article
-  img
-    margin: 0 15px 0 0px
   img
     float: left
 
