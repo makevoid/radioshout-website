@@ -47,8 +47,7 @@ box_images = ->
     # TODO:
     # $(".article img, .event img").imagesLoaded =>
 
-    height = Math.max img.height(), 500
-    console.log height
+    height = Math.max img.height(), 200
     article.find(".img_box").height height
 
 
@@ -187,6 +186,7 @@ $("body").on "page_loaded", ->
         audio: 13,
         articoli: 14,
         podcasts: 15,
+        pagine: 16,
       }
     }
     window.fiveapi = new Fiveapi( configs )
@@ -325,9 +325,15 @@ write_images = (obj) =>
 
 write_videos = (text) ->
   # [youtube_2b_8yOZJn8A]
-  text.replace /\[youtube_(.+)\]/, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>"
+  if $(".fiveapi_element[data-type='article']").length > 0
+    text.replace /\[youtube_(.+)\]/, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>"
+  else
+    text.replace /\[youtube_(.+)\]/, "<img src='http://img.youtube.com/vi/$1/0.jpg' />"
+
+
 
 markup = (obj) ->
+  return unless obj.text
   obj.text = markdown.toHTML obj.text
   obj = write_images obj
   obj.text = write_videos obj.text
@@ -393,6 +399,9 @@ render_haml = (view_name, obj={}, callback) ->
     callback html
 
 got_article = (id, article) ->
+  if article.error
+    console.error article
+    return
   view = "#{singularize article.collection}_article"
   render_haml view, article, (html) ->
     $(".fiveapi_element[data-type=article]").append html
