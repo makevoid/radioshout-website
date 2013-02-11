@@ -3,10 +3,9 @@
 .event.article
   %h2
     %a{ href: link }
-      %span.date 
+      %span.date
         = haml.format_date(published_at)
         = "-"
       = title
   .text
-    != text
-  
+    != haml.article_preview(text)

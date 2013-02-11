@@ -6,7 +6,6 @@ $("body").on "sass_loadeds", ->
   # g.fivetastic.dev_mode() # comment this in production
   $("body").off "page_loaded"
 
-  images_resize()
   setTimeout ->
     apply_markdown()
   , 200
@@ -23,7 +22,7 @@ $("body").on "sass_loadeds", ->
     gal_build()
     $("#content").css({ opacity: 0 })
     $("#content").animate({ opacity: 1 }, 1000)
-    images_resize()
+    utils.img.vcenter ".article .img_box"
 
     setTimeout ->
       apply_markdown()
@@ -47,8 +46,8 @@ box_images = ->
     # TODO:
     # $(".article img, .event img").imagesLoaded =>
 
-    height = Math.max img.height(), 200
-    article.find(".img_box").height height
+  $(".img_box img").imagesLoaded ->
+    utils.img.vcenter ".article .img_box"
 
 
 
@@ -95,6 +94,12 @@ gal_build = ->
     $("#img_gal img:first").css({opacity: 1})
   $(".caption").html titles[cur_idx]
 
+  elem = $ "#img_gal"
+  $("#img_gal img").each (idx, img) ->
+    img = $ img
+    margin  = (elem.height() - img.height()) / 2
+    img.css( top: "#{margin}px" )
+
 gal_anim = ->
   time = 5000
   # time = 1000
@@ -113,17 +118,18 @@ gal_anim = ->
     gal_anim()
   , time
 
+utils = {}
+utils.img = {}
 
-images_resize = ->
-  $(".img_box")
-
-  # setTimeout ->
-  #   height = $("#img_gal").width() / 4 * 2.5
-  #   $("#img_gal").height height
-  # , 10
+utils.img.vcenter = (img_containers) ->
+  $(img_containers).each (idx, elem) ->
+    elem    = $ elem
+    img     = elem.find "img"
+    margin  = (elem.height() - img.height()) / 2
+    img.css( top: "#{margin}px" )
 
 $(window).on "resize", ->
-  images_resize()
+  utils.img.vcenter ".article .img_box"
 
 
 
@@ -432,11 +438,15 @@ haml.format_date = (date) ->
 
 haml.article_preview = (text) ->
   max_length = 520
-  txt = text.split(/(<img.*?>)/)[1]
-  if text.length > max_length
-    # txt = text.split(/\[(file|image)_\d+\]/)[1]
-    text = txt if txt
+  txt = text.split(/(<img.*?>)/)[1..2].join()
+  text = txt if txt
+  text = if text.length > max_length
     "#{text.substring(0, max_length)}..."
   else
-    text = txt if txt
+    text
+
+  unless location.pathname == "/articoli"
+    # only one image
+    text.split(/(<img.*?>)/)[1]
+  else
     text
