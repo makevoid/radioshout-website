@@ -445,8 +445,11 @@ haml.article_preview = (text) ->
   else
     text
 
+
+
   unless location.pathname == "/articoli"
     # only one image
-    text.split(/(<img.*?>)/)[1]
+    split = text.split(/(<img.*?>)/)[1]
+    if split then split else text
   else
     text
