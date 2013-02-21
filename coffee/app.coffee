@@ -177,6 +177,8 @@ articles_per_page = 18
 $("body").on "page_loaded", ->
   hover_nav()
 
+  $("body").append("<div id='fiveapi_loaded'></div>")
+
   $.get "#{hostz}/fiveapi.js", (data) ->
     eval data
     configs = {
@@ -225,6 +227,7 @@ $("body").on "page_loaded", ->
       setTimeout ->
         box_images()
         gal_build()
+
       , 200
 
     setTimeout ->
