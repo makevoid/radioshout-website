@@ -1,4 +1,4 @@
-source :rubygems
+source 'http://rubygems.org'
 
 gem "rack"
 # gem "rack-contrib"
@@ -11,4 +11,5 @@ group :development, :test do
   gem "guard-livereload"
   gem "guard-rspec"
   gem "growl"
+  gem 'rb-fsevent', '~> 0.9.1'
 end

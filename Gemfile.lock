@@ -20,6 +20,7 @@ GEM
     listen (0.7.1)
     multi_json (1.0.4)
     rack (1.4.1)
+    rb-fsevent (0.9.3)
     rerun (0.7.1)
       listen
     thor (0.14.6)
@@ -33,4 +34,5 @@ DEPENDENCIES
   guard-livereload
   guard-rspec
   rack
+  rb-fsevent (~> 0.9.1)
   rerun
