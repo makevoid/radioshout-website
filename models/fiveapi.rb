@@ -1,9 +1,14 @@
 class Fiveapi
   COLLECTIONS = {
-    articoli: 1,
-    eventi: 2,
-    chi_siamo: 3,
-    collaboratori: 4,
-    video: 5
+    eventi: 6,
+    programmi: 7,
+    chi_siamo: 9,
+    radio: 10,
+    foto: 11,
+    video: 12,
+    audio: 13,
+    articoli: 14,
+    podcasts: 15,
+    pagine: 16,
   }
 end
