@@ -2,38 +2,6 @@ g = window
 
 $.ajaxSetup { cache: false }
 
-$("body").on "sass_loadeds", ->
-  # g.fivetastic.dev_mode() # comment this in production
-  $("body").off "page_loaded"
-
-  setTimeout ->
-    apply_markdown()
-  , 200
-
-  # $.get "http://jscrape.it/js/jscrape/jscrape.js", (data) ->
-  #   eval data
-  #
-  # $.get "http://shoutcast.mixstream.net/js/status/usa7-vn:8012", (data) ->
-  #   console.log data
-  #   $("#stream .status").html data
-
-  # megafix
-  $("body").on "page_js_loaded", ->
-    gal_build()
-    $("#content").css({ opacity: 0 })
-    $("#content").animate({ opacity: 1 }, 1000)
-    utils.img.vcenter ".article .img_box"
-
-    setTimeout ->
-      apply_markdown()
-    , 200
-    setTimeout ->
-      change_color()
-    , 200
-
-  setTimeout ->
-    change_color("now")
-  , 400
 
 box_images = ->
   $(".article, .event").each (idx, article) ->
@@ -174,7 +142,51 @@ articles_per_page = 18
 
 # fiveapi requires jquery/zepto
 
+change_color_overtime = (now) ->
+  setTimeout ->
+    change_color now
+  , 0
+  setTimeout -> # for articles titles
+    change_color now
+  , 500
+  setTimeout ->
+    change_color now
+  , 1500
+
+old_sass_loaded = ->
+  console.log "SASSS"
+  # g.fivetastic.dev_mode() # comment this in production
+  $("body").off "page_loaded"
+
+  setTimeout ->
+    apply_markdown()
+  , 200
+
+  # $.get "http://shoutcast.mixstream.net/js/status/usa7-vn:8012", (data) ->
+  #   console.log data
+  #   $("#stream .status").html data
+
+  # megafix
+  $("body").on "page_js_loaded", ->
+    gal_build()
+    $("#content").css({ opacity: 0 })
+    $("#content").animate({ opacity: 1 }, 1000)
+    utils.img.vcenter ".article .img_box"
+
+    setTimeout ->
+      apply_markdown()
+    , 200
+
+    change_color_overtime()
+
+  change_color_overtime("now")
+
+
+
 $("body").on "page_loaded", ->
+
+  old_sass_loaded()
+
   hover_nav()
 
   $("body").append("<div id='fiveapi_loaded'></div>")
