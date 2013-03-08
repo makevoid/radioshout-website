@@ -33,6 +33,33 @@ class Radioshout < Sinatra::Base
     redirect_without_www
   end
 
+  def render_fiveapi(output)
+    dom = Nokogiri::HTML output
+    elem = dom.search(".fiveapi_element").first
+    if elem
+      # @articles = Collection.get :articoli
+      type = elem["data-type"]
+      name = elem["data-name"]
+      if type == "collection"
+        output = render_collection name, dom
+      else
+        output = render_article name, dom
+      end
+    end
+
+    output
+  end
+
+  # TODO: replace collection with actual content
+
+  def render_collection(name, dom)
+    dom.inner_html
+  end
+
+  def render_article(name, dom)
+    dom.inner_html
+  end
+
   def jshaml_to_rbhaml(content)
     # change js objects into ruby hashes
     regex = /(['"][\w-_]*?['"])\s*:\s(['"][\w-_]*?['"]|[\w.()-_]*?)/
@@ -66,7 +93,9 @@ class Radioshout < Sinatra::Base
       content = File.read "#{@@path}/views/#{view}.haml"
       content = jshaml_to_rbhaml content
 
-      haml content, layout: :layout_sinatra
+      output = haml content, layout: :layout_sinatra
+      output = render_fiveapi output
+      output
       # haml view.to_sym, layout: :layout_sinatra
     end
   end

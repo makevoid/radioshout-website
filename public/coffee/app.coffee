@@ -154,7 +154,6 @@ change_color_overtime = (now) ->
   , 1500
 
 old_sass_loaded = ->
-  console.log "SASSS"
   # g.fivetastic.dev_mode() # comment this in production
   $("body").off "page_loaded"
 

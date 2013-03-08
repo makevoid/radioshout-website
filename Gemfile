@@ -10,6 +10,8 @@ gem "json"
 gem "haml"
 gem "sass"
 
+gem "nokogiri"
+
 # gem "mail"
 
 group :development do
