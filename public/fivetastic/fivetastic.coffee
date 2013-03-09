@@ -30,7 +30,7 @@ class FiveTastic
         this.load_page page
 
     this.manage_state()
-    this.theme_buttons()
+    # this.theme_buttons()
 
   # rendering
 

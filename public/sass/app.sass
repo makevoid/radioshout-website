@@ -1,25 +1,27 @@
+@import 'reset'
+
 // TODO: add variables into mixins on sass-js
-+gradient(!start, !end)
-  background-image: -webkit-linear-gradient(!start, !end)
-  background: !start
+=gradient($start, $end)
+  background-image: -webkit-linear-gradient($start, $end)
+  background: $start
 
 // this is your main css file, loaded after reset.sass feel free to delete everything and write your own styles
 
-!text_color2 = #FFF
-//!bg = rgba(179, 229, 230, 0.7)
-!bg = rgba(78,  230, 173, 0.7)
-!bg_alt = rgba(255, 85, 0, 0.7)
-//!bg = !bg_alt
+$text_color2:#FFF
+$bg: rgba(179, 229, 230, 0.7)
+// $bg: rgba(78,  230, 173, 0.7)
+$bg_alt: rgba(255, 85, 0, 0.7)
+//$bg: $bg_alt
 
 #inner_container
   h2, h3
-    //background: !bg_alt
+    //background: $bg_alt
 
 
-!bg_dark = rgba(179, 229, 230, 0.3)
+$bg_dark: rgba(179, 229, 230, 0.3)
 
 
-+rounded
+=rounded
   border-radius: 10px
   -webkit-border-radius: 10px
   -moz-border-radius: 10px
@@ -66,14 +68,14 @@ a:hover
   font-family: lobster
   src: url('/fonts/denne_freakshow.ttf')
 
-!min-width: 480px
+$min-width: 480px
 
 #bg
   position: absolute
   top: 0
   z-index: -1
   width: 100%
-  min-width: !min-width
+  min-width: $min-width
   img
     width: 100%
 
@@ -82,7 +84,7 @@ a:hover
   max-width: 1200px
 
 #inner_inner_container
-  min-width: !min-width
+  min-width: $min-width
   margin: 0 auto
 
 #header
@@ -95,10 +97,11 @@ a:hover
   min-height: 600px
   padding: 15px 10px 0 10px
   border-radius: 10px
-  //background: !bg
   box-shadow: 3px 3px 5px #FFF
   border: 1px solid #999
   border-top: 0
+  // default bg color
+  background: $bg
 
 #content
   margin: 0 0 0 10px
@@ -147,20 +150,20 @@ nav
     font-family: lobster
     font-size: 1em
     border-radius: 10px 10px 0 0
-    background: !bg_dark
+    background: $bg
     border: 1px solid #999
     border-bottom: none
     color: white
 
   a:hover, a.selected
     color: #FFF
-    background: !bg
+    background: $bg
 
 ul
   margin: 10px 0 20px
   li
-   margin: 3px 0 5px
-   font-weight: bold
+    margin: 3px 0 5px
+    font-weight: bold
 
 h2, h3
   margin: 0 0 10px 0
@@ -174,14 +177,14 @@ h2, h3
   white-space: nowrap
   text-overflow: ellipsis
   a
-   color: #FFF
-   padding: 0 0 0 5px
+    color: #FFF
+    padding: 0 0 0 5px
 p
   margin: 3px 0 5px
 
 
 .box
-  color: !text_color2
+  color: $text_color2
   padding: 2px 9px
   margin: 0 0 15px 0
   +rounded
@@ -228,7 +231,6 @@ ul span
     margin: 15px 2% 15px 2%
     img
       width: 100%
-    .title
     .text
       overflow: hidden
       height: 200px
