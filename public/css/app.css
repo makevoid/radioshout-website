@@ -364,6 +364,9 @@ ul span {
   width: 100%;
   margin: 0; }
 
+#fiveapi .nav a#img_back {
+  width: 18%; }
+
 table.palinsesto {
   margin: 10px 0;
   width: 100%;

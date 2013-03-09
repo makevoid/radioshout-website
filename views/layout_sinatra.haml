@@ -8,19 +8,6 @@
     %script{:src => "/fivetastic/vendor/all.js"}
     %script{:src => "/vendor/jquery_imagesloaded.js"}
     %script{:src => "/vendor/jquery_clean.js"}
-    / <script src="/fivetastic/init.js"></script>
-    / Load the compiled version of the following files
-    /
-      <script src="/fivetastic/vendor/coffeescript.js"></script>
-      <script src="/fivetastic/vendor/haml.js"></script>
-      <script src="/fivetastic/vendor/sass.js"></script>
-      <script src="/fivetastic/vendor/jquery.js"></script>
-      <script src="/fivetastic/init.js"></script>
-    / TODO: require zepto option
-    :css
-      body {
-        color: #FFF;
-      }
     %body
       #container
         #inner_container
@@ -40,9 +27,7 @@
             #content_outer
               #content_head
                 #stream
-
                   -# %img.status{ src: "http://shoutcast.mixstream.net/status/usa7-vn:8012.gif" }
-
                   .swf
                     ! <object type="application/x-shockwave-flash" data="http://shoutcast.mixstream.net/flash/MixStreamPlayer.swf" width="335" height="50" id="mixStreamPlayer" style="visibility: visible; "><param name="wmode" value="transparent"><param name="flashvars" value="serverHost=usa7-vn.mixstream.net&amp;serverPort=8012&amp;getStats=0&amp;autoStart=0&amp;textColour=000000&amp;buttonColour=FFFFFF&amp;backgroundURL=none"><a href="http://www.facebook.com/l.php?u=http%3A%2F%2Fusa7-vn.mixstream.net%3A8012%2Flisten.pls&h=jAQFOjgfx">Ascolta la radio</a></object>
 
