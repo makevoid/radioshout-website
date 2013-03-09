@@ -350,6 +350,22 @@ write_videos = (text) ->
   else
     text.replace /\[youtube_(.+)\]/, "<img src='http://img.youtube.com/vi/$1/0.jpg' />"
 
+views = {}
+views.mixcloud = (username, channel, id) -> "<iframe width='100%' height='260' src='http://www.mixcloud.com/widget/iframe/?feed=http%3A%2F%2Fwww.mixcloud.com%2F#{username}%2Fplaylists%2F#{channel}-express%2F%3Flimit%3D10&embed_uuid=#{id}&stylecolor=&embed_type=widget_standard' frameborder='0'></iframe>"
+
+write_mixcloud = (text) ->
+  regex = /mixcloud\((.*?)\)/
+  match = text.match regex
+  if match
+    array = match[1].split(" ")
+    username = array[0]# channel, id = , array[1], array[2]
+    text = text.replace regex, "#{username}"
+
+  text
+  #, "mixcloud"
+  #
+  # views.mixcloud username, channel, id
+  # mixcloud(makevoid honolulu-express c235a91a-5d2d-4ac0-89ac-4d170dbbab40)
 
 
 markup = (obj) ->
@@ -357,6 +373,7 @@ markup = (obj) ->
   obj.text = markdown.toHTML obj.text
   obj = write_images obj
   obj.text = write_videos obj.text
+  obj.text = write_mixcloud obj.text
   obj.text
 
 singularize = (word) ->
