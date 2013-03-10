@@ -351,20 +351,28 @@ write_videos = (text) ->
     text.replace /\[youtube_(.+)\]/, "<img src='http://img.youtube.com/vi/$1/0.jpg' />"
 
 views = {}
-views.mixcloud = (username, channel, id) -> "<iframe width='100%' height='260' src='http://www.mixcloud.com/widget/iframe/?feed=http%3A%2F%2Fwww.mixcloud.com%2F#{username}%2Fplaylists%2F#{channel}-express%2F%3Flimit%3D10&embed_uuid=#{id}&stylecolor=&embed_type=widget_standard' frameborder='0'></iframe>"
+views.mixcloud = (username, playlist) ->
+  # username = "redazioneradioshout"
+  # playlist = "its-saturday"
+  details = "?feed=http%3A%2F%2Fwww.mixcloud.com%2F#{username}%2Fplaylists%2F#{playlist}%2F%3Flimit%3D10&stylecolor=cc9b00&embed_type=widget_standard"
+  "<iframe width='100%' height='700' src='http://www.mixcloud.com/widget/iframe/#{details}' frameborder='0'></iframe>"
+
 
 write_mixcloud = (text) ->
   regex = /mixcloud\((.*?)\)/
   match = text.match regex
   if match
     array = match[1].split(" ")
-    username = array[0]# channel, id = , array[1], array[2]
-    text = text.replace regex, "#{username}"
+    username = array[0]
+    playlist = array[1]
+    iframe = views.mixcloud username, playlist
+    text = text.replace regex, iframe
+
 
   text
   #, "mixcloud"
   #
-  # views.mixcloud username, channel, id
+  #
   # mixcloud(makevoid honolulu-express c235a91a-5d2d-4ac0-89ac-4d170dbbab40)
 
 

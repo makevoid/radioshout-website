@@ -222,6 +222,11 @@ ul span {
 .fiveapi_element[data-type='collection'] .article iframe {
   width: 100%; }
 
+.podcast .article img {
+  display: none; }
+.podcast .article iframe {
+  width: 70%; }
+
 .text a {
   color: black; }
 .text a:hover {
