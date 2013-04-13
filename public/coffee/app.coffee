@@ -343,6 +343,9 @@ write_images = (obj) =>
     _.delay(bind_audio, 300, image.id)
   obj
 
+write_clears = (text) ->
+  text.replace /___/g, "<div class='clear'></div>"
+
 write_videos = (text) ->
   # [youtube_2b_8yOZJn8A]
   if $(".fiveapi_element[data-type='article']").length > 0
@@ -381,6 +384,7 @@ markup = (obj) ->
   obj.text = markdown.toHTML obj.text
   obj = write_images obj
   obj.text = write_videos obj.text
+  obj.text = write_clears obj.text
   obj.text = write_mixcloud obj.text
   obj.text
 

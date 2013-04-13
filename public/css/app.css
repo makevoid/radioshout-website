@@ -394,11 +394,15 @@ table.palinsesto {
     border-bottom: 0; }
 
 .staff .article .text p {
-  width: 33%;
+  width: 27%;
   float: left; }
 .staff .article .text img {
   width: 100%;
-  clear: left; }
+  padding-right: 13px; }
+.staff .article .text h2 {
+  margin-top: 5px; }
+.staff .article .text p:empty {
+  float: none; }
 
 .hidden {
   display: none; }
