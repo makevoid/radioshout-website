@@ -8,6 +8,26 @@
     %script{:src => "/fivetastic/vendor/all.js"}
     %script{:src => "/vendor/jquery_imagesloaded.js"}
     %script{:src => "/vendor/jquery_clean.js"}
+
+    - host = "radioshout.mkvd.net"
+    %meta{ charset: "utf-8" }
+    %meta{ :"http-equiv" => "X-UA-Compatible", content: "IE=edge" }
+    -# %meta{ name: "viewport", content: "width=device-width" }
+    - tagline = "#{title} - Shout Your Life"
+    - description = ""
+    - meta_description = "#{tagline}#{description}"
+    %meta{ name: "description", content: meta_description }
+    %meta{ name: "keywords", content: "radioshout, shout, radio, fiesole, web, interviste, band, firenze, fiorentine, eventi, concerti" }
+    %meta{ name: "author", content: "Francesco 'makevoid' Canessa" }
+    %meta{ property: "og:title", content: tagline }
+    %meta{ property: "og:url", content: "http://#{host}/" }/
+    %meta{ property: "og:type", content: "website" }/
+    %meta{ property: "og:site_name", content: title }/
+    %meta{ property: "og:image", content: "http://#{host}/img/logo_orig_square.png" }/
+    %meta{ property: "og:description", content: meta_description }/
+    %meta{ property: "fb:admins", content: "redazione.radioshout" }/
+
+
     %body
       #container
         #inner_container
