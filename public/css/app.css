@@ -393,6 +393,13 @@ table.palinsesto {
   table.palinsesto tbody tr:last-child td {
     border-bottom: 0; }
 
+.staff .article .text p {
+  width: 33%;
+  float: left; }
+.staff .article .text img {
+  width: 100%;
+  clear: left; }
+
 .hidden {
   display: none; }
 
