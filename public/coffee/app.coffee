@@ -302,13 +302,13 @@ change_color = (at) ->
 
 g.change_color = change_color
 
-load_vendors = ->
-  # FIXME: rewrite with iced coffee || deferred get?
-  $.get "/vendor/jquery-xcolor.js", (data) ->
-    $.get "/vendor/jquery_imagesloaded.js", (data) ->
-      eval data
-
-load_vendors()
+# load_vendors = ->
+#   # FIXME: rewrite with iced coffee || deferred get?
+#   $.get "/vendor/jquery-xcolor.js", (data) ->
+#     $.get "/vendor/jquery_imagesloaded.js", (data) ->
+#       eval data
+#
+# load_vendors()
 
 
 hamls = {}
