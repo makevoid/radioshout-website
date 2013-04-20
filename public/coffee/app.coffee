@@ -181,8 +181,13 @@ old_sass_loaded = ->
   change_color_overtime("now")
 
 
+twitter_trigger_load = ->
+  twttr.widgets.load()
+
 
 $("body").on "page_loaded", ->
+
+  twitter_trigger_load()
 
   old_sass_loaded()
 
