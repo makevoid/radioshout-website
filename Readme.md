@@ -1,5 +1,10 @@
 # RadioShout
 
+### TODO
+
+- home: staccare twitter un po dal resto
+
+
 ### lanciare il server
 
 
