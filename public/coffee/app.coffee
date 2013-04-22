@@ -182,7 +182,7 @@ old_sass_loaded = ->
 
 
 twitter_trigger_load = ->
-  twttr.widgets.load() if twttr
+  twttr.widgets.load() if typeof(twttr) == "object"
 
 
 $("body").on "page_loaded", ->
