@@ -132,7 +132,7 @@ if location.hostname == "localhost"
 else
   # prod
   hostz = "fiveapi.com"
-  local = "radioshout.mkvd.net"
+  local = "radioshout.it"
 
 hostz = "http://#{hostz}"
 local = "http://#{local}"
