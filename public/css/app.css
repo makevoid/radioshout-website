@@ -422,3 +422,6 @@ table.palinsesto {
   width: 96%;
   margin: 0 auto;
   display: block; }
+
+.page.article .text p {
+  text-align: justify; }
