@@ -5,11 +5,12 @@
   "/palinsesto":    "palinsesto",
   "/shout_world":   "shout_world",
   "/chi_siamo":     "chi_siamo_page",
-  "/video":         "video_page",  
+  "/video":         "video_page",
   "/video/*":       "video_single",
   "/audio":         "audio_page",
   "/audio/*":       "audio_single",
   "/articoli":      "articoli_page",
+  "/festival":      "festival",
   "/articoli/*":    "article",
   "/interviste":    "interviste",
   "/recensioni":    "recensioni",
@@ -26,4 +27,4 @@
   "/arci":          "arci",
   "/collabs":       "collabs",
   "/staff":         "staff"
-} 
+}
