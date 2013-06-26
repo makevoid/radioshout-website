@@ -264,6 +264,7 @@ colors = {
   "/palinsesto":  "rgba(204, 155, 0,   0.9)",
   "/podcasts":    "rgba(204, 155, 0,   0.9)",
   "/eventi":      "rgba(153, 153, 51,  0.9)",
+  "/festival":    "rgba(153, 153, 51,  0.9)",
   "/events":      "rgba(153, 153, 51,  0.9)",
   "/shout_world": "rgba(204, 102, 51,  0.9)",
   "/video":       "rgba(204, 102, 51,  0.9)",
