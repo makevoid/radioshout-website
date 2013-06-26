@@ -37,26 +37,30 @@ class Radioshout < Sinatra::Base
     dom = Nokogiri::HTML output
     elem = dom.search(".fiveapi_element").first
     if elem
-      # @articles = Collection.get :articoli
       type = elem["data-type"]
-      name = elem["data-name"]
       if type == "collection"
-        output = render_collection name, dom
+        output = render_collection dom, elem
       else
-        output = render_article name, dom
+        output = render_article dom, elem
       end
     end
 
     output
   end
 
-  # TODO: replace collection with actual content
-
-  def render_collection(name, dom)
+  def render_collection(dom, elem)
+    name = elem["data-name"]
+    content = Collection.get(name)
+    content = content.map do |cont|
+      "<div><h2>#{cont[:title]}</h2><p>#{cont[:text]}</p></div>"
+    end
+    elem.inner_html = content.join(" ")
     dom.inner_html
   end
 
-  def render_article(name, dom)
+  def render_article(dom, elem)
+    article_id = elem["data-id"]
+    elem.content = Article.get(article_id)[:text]
     dom.inner_html
   end
 
