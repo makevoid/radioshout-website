@@ -66,7 +66,7 @@ class Radioshout < Sinatra::Base
 
   def jshaml_to_rbhaml(content)
     # change js objects into ruby hashes
-    regex = /(['"][\w-_]*?['"])\s*:\s(['"][\w-_]*?['"]|[\w.()-_]*?)/
+    regex = /(['"][\w_-]*?['"])\s*:\s(['"][\w_-]*?['"]|[\w.)(_-]*?)/
     content.gsub!(regex, "\\1 => \\2")
 
     # remove haml. scope (dioboia)

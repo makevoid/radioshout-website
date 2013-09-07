@@ -358,6 +358,10 @@ write_videos = (text) ->
     text.replace /\[youtube_(.+)\]/, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>"
   else
     text.replace /\[youtube_(.+)\]/, "<img src='http://img.youtube.com/vi/$1/0.jpg' />"
+    
+  # [vimeo_123]
+  text.replace /\[vimeo_(.+)\]/, "<iframe src='http://player.vimeo.com/video/$1?title=0&amp;byline=0&amp;portrait=0&amp;color=CC6633' frameborder='0'></iframe>"
+  
 
 views = {}
 views.mixcloud = (username, playlist) ->
