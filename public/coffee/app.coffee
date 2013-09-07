@@ -354,7 +354,7 @@ write_clears = (text) ->
 
 write_videos = (text) ->
   # [youtube_2b_8yOZJn8A]
-  if $(".fiveapi_element[data-type='article']").length > 0
+  text = if $(".fiveapi_element[data-type='article']").length > 0
     text.replace /\[youtube_(.+)\]/, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>"
   else
     text.replace /\[youtube_(.+)\]/, "<img src='http://img.youtube.com/vi/$1/0.jpg' />"
