@@ -103,7 +103,7 @@ class Radioshout < Sinatra::Base
   @@routes = load_routes
   @@routes.each do |url, view|
     get url do
-      content = File.open "#{@@path}/views/#{view}.haml", "r:UTF-8"
+      content = File.open("#{@@path}/views/#{view}.haml", "r:UTF-8").read
       content = jshaml_to_rbhaml content
 
       output = haml content, layout: :layout_sinatra
