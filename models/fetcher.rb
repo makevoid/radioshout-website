@@ -6,7 +6,11 @@ module Fetcher
     if response.code == "200"
       json = JSON.parse response.body
       json = json.symkeys
-      json unless json[:error]
+      unless json[:error]
+        json
+      else
+        puts "Error: #{json.inspect}"
+      end
     end
   end
 

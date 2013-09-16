@@ -14,14 +14,16 @@ include Utils
 
 require "#{path}/lib/monkeypatches"
 
-FIVEAPI_HOST = if ENV['RACK_ENV'] == "development"
+
+env = ENV["RACK_ENV"] || "development"
+
+FIVEAPI_HOST = if env == "development"
   "localhost:3000"
   # "fiveapi.com"
 else
   "fiveapi.com"
 end
 
-env = ENV["RACK_ENV"] || "development"
 # DataMapper.setup :default, "mysql://localhost/riotvan_#{env}"
 require_all "#{path}/models"
 # DataMapper.finalize

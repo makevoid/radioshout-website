@@ -26,6 +26,11 @@ class FiveTastic
         page = this.page_from_path routes, path
         page = this.detect_format page
         @hamls.push { name: page.full_name, loaded: false }
+        # radioshout fix
+        if path == "/palinsesto"
+          @body.trigger "page_loaded"
+          return
+         
         this.load_page { value: "layout.haml" }
         this.load_page page
 
@@ -157,6 +162,12 @@ class FiveTastic
     page = this.page_from_path routes, path
     page = this.detect_format page
     page.path = path
+    
+    # hack for radioshout/palinsesto
+    if page.name == "palinsesto"
+      window.location = "/palinsesto"
+      return
+    
     this.load_page_js page
     this.push_state page
 

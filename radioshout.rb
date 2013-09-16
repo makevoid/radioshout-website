@@ -50,7 +50,11 @@ class Radioshout < Sinatra::Base
 
   def render_collection(dom, elem)
     name = elem["data-name"]
-    content = Collection.get(name)
+    content = Collection.get name
+    unless content
+      puts "ERROR: collection #{name} not found, proceeding anyway..."
+      return dom.inner_html 
+    end
     content = content.map do |cont|
       "<div><h2>#{cont[:title]}</h2><p>#{cont[:text]}</p></div>"
     end
@@ -60,7 +64,12 @@ class Radioshout < Sinatra::Base
 
   def render_article(dom, elem)
     article_id = elem["data-id"]
-    elem.content = Article.get(article_id)[:text]
+    article = Article.get article_id.to_i
+    if article
+      elem.content = article[:text]
+    else  
+      elem.content = "Article not found"
+    end
     dom.inner_html
   end
 

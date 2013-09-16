@@ -138,7 +138,7 @@ hostz = "http://#{hostz}"
 local = "http://#{local}"
 
 # articles_per_page = 6
-articles_per_page = 18
+articles_per_page = 50
 
 # fiveapi requires jquery/zepto
 
