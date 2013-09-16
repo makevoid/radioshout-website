@@ -24,7 +24,7 @@
 .palinsesto
   -# { cellspacing: 0 }
   :textile
-    #{File.read("views/palinsesto.textile")}
+    #{File.open("views/palinsesto.textile", "r:UTF-8").read}
 
 .right
   ♪ = musica
