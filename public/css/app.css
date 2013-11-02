@@ -52,6 +52,9 @@ body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+table {
+  border-spacing: 0; }
+
 strong {
   font-weight: bold; }
 
@@ -384,13 +387,16 @@ ul span {
   font-size: 0.9em; }
   .palinsesto table thead td {
     font-weight: bold; }
-  .palinsesto table tbody td:first-child {
+  .palinsesto table tbody td:first-child, .palinsesto table tbody th:first-child {
     font-weight: bold; }
-  .palinsesto table td {
+  .palinsesto table td, .palinsesto table th {
     padding: 6px 3px 3px 3px;
-    border-bottom: 1px solid #eeeeee;
     width: 12.5%;
     text-align: center; }
+  .palinsesto table td.program {
+    background: rgba(130, 100, 150, 0.65); }
+  .palinsesto table td.replica {
+    background: rgba(130, 100, 150, 0.4); }
   .palinsesto table tbody tr:last-child td {
     border-bottom: 0; }
 

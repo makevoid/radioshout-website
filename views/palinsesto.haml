@@ -23,8 +23,8 @@
 
 .palinsesto
   -# { cellspacing: 0 }
-  :textile
-    #{File.open("views/palinsesto.textile", "r:UTF-8").read}
+  - palinsesto = File.open("views/palinsesto.textile", "r:UTF-8").read
+  #{morph_html RedCloth.new(palinsesto).to_html}
 
 .right
   ♪ = musica

@@ -40,6 +40,9 @@ body
   -webkit-box-sizing: border-box
   box-sizing: border-box
 
+table
+  border-spacing: 0
+
 strong
   font-weight: bold
 
@@ -388,13 +391,17 @@ ul span
   font-size: 0.9em
   thead td
     font-weight: bold
-  tbody td:first-child
+  tbody td:first-child, tbody th:first-child
     font-weight: bold
-  td
+  td, th
     padding: 6px 3px 3px 3px
-    border-bottom: 1px solid #eee
+    //border-bottom: 1px solid #eee
     width: 12.5%
     text-align: center
+  td.program
+    background: rgba(130, 100, 150, 0.65)
+  td.replica
+    background: rgba(130, 100, 150, 0.4)
   tbody tr:last-child td
     border-bottom: 0
 
