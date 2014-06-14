@@ -8,6 +8,11 @@ class Radioshout < Sinatra::Base
 
   @@path = PATH
 
+  get "/" do
+    redirect "http://radioshout.eu"
+  end
+
+
   #Haml::Options.defaults[:format] = :html5
 
   # partial :comment, { comment: "blah" }
