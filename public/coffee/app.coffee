@@ -138,7 +138,7 @@ hostz = "http://#{hostz}"
 local = "http://#{local}"
 
 # articles_per_page = 6
-articles_per_page = 18
+articles_per_page = 50
 
 # fiveapi requires jquery/zepto
 
@@ -354,10 +354,14 @@ write_clears = (text) ->
 
 write_videos = (text) ->
   # [youtube_2b_8yOZJn8A]
-  if $(".fiveapi_element[data-type='article']").length > 0
+  text = if $(".fiveapi_element[data-type='article']").length > 0
     text.replace /\[youtube_(.+)\]/, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>"
   else
     text.replace /\[youtube_(.+)\]/, "<img src='http://img.youtube.com/vi/$1/0.jpg' />"
+    
+  # [vimeo_123]
+  text.replace /\[vimeo_(.+)\]/, "<iframe src='http://player.vimeo.com/video/$1?title=0&amp;byline=0&amp;portrait=0&amp;color=CC6633' frameborder='0'></iframe>"
+  
 
 views = {}
 views.mixcloud = (username, playlist) ->

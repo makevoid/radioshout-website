@@ -12,6 +12,9 @@ gem "sass"
 
 gem "nokogiri"
 
+gem "haml-contrib"
+gem "RedCloth"
+
 # gem "mail"
 
 group :development do

@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    RedCloth (4.2.9)
     addressable (2.2.6)
     coffee-script (2.2.0)
       coffee-script-source
@@ -30,6 +31,8 @@ GEM
       sass (>= 3.1)
     haml (4.0.0)
       tilt
+    haml-contrib (1.0.0.1)
+      haml (>= 3.2.0.alpha.13)
     json (1.7.7)
     listen (0.7.1)
     multi_json (1.0.4)
@@ -52,12 +55,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth
   foreman
   guard
   guard-coffeescript
   guard-livereload
   guard-sass
   haml
+  haml-contrib
   json
   nokogiri
   rerun

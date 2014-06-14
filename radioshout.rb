@@ -55,7 +55,11 @@ class Radioshout < Sinatra::Base
 
   def render_collection(dom, elem)
     name = elem["data-name"]
-    content = Collection.get(name)
+    content = Collection.get name
+    unless content
+      puts "ERROR: collection #{name} not found, proceeding anyway..."
+      return dom.inner_html 
+    end
     content = content.map do |cont|
       "<div><h2>#{cont[:title]}</h2><p>#{cont[:text]}</p></div>"
     end
@@ -65,13 +69,18 @@ class Radioshout < Sinatra::Base
 
   def render_article(dom, elem)
     article_id = elem["data-id"]
-    elem.content = Article.get(article_id)[:text]
+    article = Article.get article_id.to_i
+    if article
+      elem.content = article[:text]
+    else  
+      elem.content = "Article not found"
+    end
     dom.inner_html
   end
 
   def jshaml_to_rbhaml(content)
     # change js objects into ruby hashes
-    regex = /(['"][\w-_]*?['"])\s*:\s(['"][\w-_]*?['"]|[\w.()-_]*?)/
+    regex = /(['"][\w_-]*?['"])\s*:\s(['"][\w_-]*?['"]|[\w.)(_-]*?)/
     content.gsub!(regex, "\\1 => \\2")
 
     # remove haml. scope (dioboia)
@@ -99,7 +108,7 @@ class Radioshout < Sinatra::Base
   @@routes = load_routes
   @@routes.each do |url, view|
     get url do
-      content = File.read "#{@@path}/views/#{view}.haml"
+      content = File.open("#{@@path}/views/#{view}.haml", "r:UTF-8").read
       content = jshaml_to_rbhaml content
 
       output = haml content, layout: :layout_sinatra
